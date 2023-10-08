@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    $('#feedback').prop('disabled', true)
+
     $(function () {
         $("#searchBox").autocomplete({
             source: function (request, response) {
@@ -64,8 +66,9 @@ $(document).ready(function () {
                     ulList.append(fieldset);
                     i+=1;
                 });
-
+                
                 // var li = $('<li/>').text()
+                $('#feedback').prop('disabled', false)
                 console.log("->", response['recommendations']);
             },
             error: function (error) {
@@ -83,7 +86,7 @@ $(document).ready(function () {
             3: 'Like'
         };
         for(var i=0;i<myForm.length;i++){
-            var input = $('#'+i).find('div').find('input:checked')[0].value;
+            var input = $('#'+i).find('div').find('input:checked')[0] !== undefined ? $('#'+i).find('div').find('input:checked')[0].value : "Yet to be watched";
             var movieName = $('#'+i).find('div').find('li')[0].innerText;
             data[movieName]=labels[input];
         }
@@ -111,5 +114,3 @@ $(document).ready(function () {
 
 
 });
-
-console.log("Hello World!!!")
