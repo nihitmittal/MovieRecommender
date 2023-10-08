@@ -29,7 +29,7 @@ def predict():
         movie_with_rating = {"title": movie, "rating": 5.0}
         training_data.append(movie_with_rating)
     recommendations = recommendForNewUser(training_data)
-    recommendations = recommendations[:10]
+    recommendations = recommendations[:5]
     resp = {"recommendations": recommendations}
     return resp
 
