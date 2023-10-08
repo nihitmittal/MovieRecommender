@@ -6,7 +6,17 @@ p {
     width: 560px;
     margin: auto;
 }
+
 div {
     width: 600px; 
     margin: auto;
+}
+
+ul{
+    list-style-type: none;
+    left:-1060px;  
+}
+
+div.hlight{
+    color:red;
 }

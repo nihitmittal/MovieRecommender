@@ -23,7 +23,11 @@ $(document).ready(function () {
             },
             select: function (event, ui) {
                 var ulList = $('#selectedMovies');
-                var li = $('<li/>').text(ui.item.value).appendTo(ulList);
+                var spanElement = $('<span/>').attr("id", `close-${ui.item.value}`).addClass("close").text('\u00D7').click({
+                    id:`${ui.item.value}`,ulList:ulList
+                },removeElement)
+
+                var li = $('<li/>').text(`${ui.item.value}`).attr('id',`${ui.item.value}`).append(spanElement).appendTo(ulList);
                 $('#searchBox').val("");
                 return false;
             },
@@ -106,10 +110,15 @@ $(document).ready(function () {
                 console.log("ERROR ->" + error );
             }
         });
-
     });
-
-
 });
 
-console.log("Hello World!!!")
+const removeElement = (event) => {
+    const id = event.data.id
+    for (i=0;i<event.data.ulList[0].children.length;i++) {
+      if (event.data.ulList[0].children[i].id === id) {
+        event.data.ulList[0].children[i].remove()
+        event.data.ulList.splice(i, 1);
+      }
+    }
+  }
