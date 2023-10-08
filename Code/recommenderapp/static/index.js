@@ -1,62 +1,4 @@
-<!doctype html>
-<html>
-
-<head>
-    <title>What movies do you like?</title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script type="text/javascript" src="../static/index.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-</head>
-
-<body>
-    <br/><br/>
-    <div style="width: 600px; margin: auto;">
-        <h2>Please select movies for training</h2>
-        <p style="width: 560px; margin: auto;">
-            <label>Search Here</label>&nbsp;&nbsp;<input type="text" name="search" id="searchBox" />
-        </p>
-    </div>
-    <div style="width: 600px; margin: auto;">
-        <h2>Selected movies : </h2>
-        <ul id="selectedMovies">
-
-        </ul>
-    </div>
-    <div style="width: 600px; margin: auto;">
-        <input type="button" class="btn btn-primary" name="predict" id="predict" value="Predict">
-    
-    </div>
-    <div style="width: 600px; margin: auto;">
-        <h2>Predicted Movies</h2>
-        <form class="recos" id="recos">
-            <ul id="predictedMovies">
-                
-            </ul>
-        </form>
-        
-    </div>
-    <div style="width: 600px; margin: auto;">
-        <input type="button" class="btn btn-info" name="feedback" id="feedback" value="Give Feedback">
-    
-    </div>
-    <div id="dataCollected" style="width: 600px; margin: auto; display: none;">
-        <h1>Thanks!! Your response was stored.
-        </h1>
-        <input type="button" id="refreshPage" class="btn btn-danger" name="refreshPage" value="Take another attempt">
-    </div>
-    <br/><br/><br/>
-</body>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" crossorigin="anonymous"></script>
-<!-- <script>
-    $(document).ready(function () {
+$(document).ready(function () {
 
     $(function () {
         $("#searchBox").autocomplete({
@@ -168,8 +110,6 @@
     });
 
 
-    });
+});
 
-</script> -->
-
-</html>
+console.log("Hello World!!!")
