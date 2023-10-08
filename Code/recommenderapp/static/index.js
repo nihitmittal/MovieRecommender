@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
-    $('#feedback').prop('disabled', true)
+    $('#feedback').prop('disabled', true);
+    // $('#success-alert').slideUp();
 
     $(function () {
         $("#searchBox").autocomplete({
@@ -103,13 +104,13 @@ $(document).ready(function () {
             success: function (response) {
                 // console.log("->", response);
                 // $("#dataCollected").css("display", "block");
-                window.location.href="/success";
+                // window.location.href="/success";
             },
             error: function (error) {
                 console.log("ERROR ->" + error );
             }
         });
-
+        $('#success-alert').show();
     });
 
 
