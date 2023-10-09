@@ -25,12 +25,12 @@ $(document).ready(function () {
                 });
             },
             select: function (event, ui) {
-                var ulList = $('#selectedMovies');
-                var spanElement = $('<span/>').attr("id", `close-${ui.item.value}`).addClass("close").text('\u00D7').click({
+                const ulList = $('#selectedMovies');
+                const spanElement = $('<span/>').attr("id", `close-${ui.item.value}`).addClass("close").text('\u00D7').click({
                     id:`${ui.item.value}`,ulList:ulList
                 },removeElement)
 
-                var li = $('<li/>').text(`${ui.item.value}`).attr('id',`${ui.item.value}`).append(spanElement).appendTo(ulList);
+                const li = $('<li/>').text(`${ui.item.value}`).attr('id',`${ui.item.value}`).append(spanElement).appendTo(ulList);
                 $('#searchBox').val("");
                 return false;
             },
@@ -39,13 +39,13 @@ $(document).ready(function () {
     });
 
     $("#predict").click( function(){
-        var movie_list = []
+        const movie_list = []
 
         $('#selectedMovies li').each( function () {
             movie_list.push($(this).text());
         });
 
-        var movies = {"movie_list": movie_list};
+        const movies = {"movie_list": movie_list};
 
         $.ajax({
             type: "POST",
@@ -56,23 +56,36 @@ $(document).ready(function () {
             cache: false,
             data: JSON.stringify(movies),
             success: function (response) {
-                var ulList = $('#predictedMovies');
-                var i = 0;
+                const ulList = $('#predictedMovies');
+                let x = 0;
                 response['recommendations'].forEach(element => {
-                    var diventry = $('<div/>');
-                    var fieldset = $('<fieldset/>', {id:i}).css("border",'0');
-                    var li = $('<li/>').text(element);
-                    var radios = $("<label class='radio-inline'><input type='radio' name="+i+" value=1>Dislike</label> \
-                    <label class='radio-inline'><input type='radio' name="+i+" value=2>Yet to watch</label> \
-                    <label class='radio-inline'><input type='radio' name="+i+" value=3>Like</label><br/><br/>");
+                    const diventry = $('<div/>').attr('id', 'div-entry');
+                    const divStars = $('<div/>').addClass('stars')
+                    const stars = $(`
+                        <i class="fa-solid fa-star" id=${x}></i>
+                        <i class="fa-solid fa-star" id=${x}></i>
+                        <i class="fa-solid fa-star" id=${x}></i>
+                        <i class="fa-solid fa-star" id=${x}></i>
+                        <i class="fa-solid fa-star" id=${x}></i>
+                    `);
+                    for(let i = 0; i < stars.length; i += 2) {
+                        stars[i].addEventListener('click', (e) => {
+                            for(let j = 0; j < stars.length; j += 2) {
+                                i >= j ? stars[j].classList.add('active') : stars[j].classList.remove('active')
+                            }
+                        });
+                    }
+                    const fieldset = $('<fieldset/>', {id:x}).css("border",'0');
+                    const li = $('<li/>').text(element);
+                    divStars.append(stars);
                     diventry.append(li);
-                    diventry.append(radios);
+                    diventry.append(divStars);
                     fieldset.append(diventry);
                     ulList.append(fieldset);
-                    i+=1;
+                    x+=1;
                 });
                 
-                // var li = $('<li/>').text()
+                // const li = $('<li/>').text()
                 $('#feedback').prop('disabled', false)
                 console.log("->", response['recommendations']);
             },
@@ -83,17 +96,20 @@ $(document).ready(function () {
     });
 
     $('#feedback').click(function(){
-        var myForm = $('fieldset');
-        var data = {};
-        var labels = {
+        const myForm = $('fieldset');
+        const data = {};
+        const labels = {
             1: 'Dislike',
             2: 'Yet to watch',
             3: 'Like'
         };
-        for(var i=0;i<myForm.length;i++){
-            var input = $('#'+i).find('div').find('input:checked')[0] !== undefined ? $('#'+i).find('div').find('input:checked')[0].value : "Yet to be watched";
-            var movieName = $('#'+i).find('div').find('li')[0].innerText;
-            data[movieName]=labels[input];
+        console.log(myForm, myForm.length)
+        for(let i=0;i<myForm.length;i++){
+            const input = $(`#${i}`).find('.active').length;
+            console.log(input)
+            // const input = $('#'+i).find('div').find('input:checked')[0] !== undefined ? $('#'+i).find('div').find('input:checked')[0].value : "Yet to be watched";
+            const movieName = $('#'+i).find('div').find('li')[0].innerText;
+            data[movieName]=input;
         }
         console.log(data);
 
@@ -120,10 +136,10 @@ $(document).ready(function () {
 
 const removeElement = (event) => {
     const id = event.data.id
-    for (i=0;i<event.data.ulList[0].children.length;i++) {
-      if (event.data.ulList[0].children[i].id === id) {
-        event.data.ulList[0].children[i].remove()
-        event.data.ulList.splice(i, 1);
-      }
+    for (let i=0;i<event.data.ulList[0].children.length;i++) {
+        if (event.data.ulList[0].children[i].id === id) {
+            event.data.ulList[0].children[i].remove()
+            event.data.ulList.splice(i, 1);
+        }
     }
-  }
+}
