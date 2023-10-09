@@ -17,8 +17,11 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route("/")
 def landing_page():
-    return render_template("landing_page.html")
+    return render_template("index.html")
 
+@app.route("/home")
+def redirected():
+    return render_template("landing_page.html")
 
 @app.route("/predict", methods=["POST"])
 def predict():
