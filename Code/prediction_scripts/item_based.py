@@ -51,15 +51,13 @@ project_dir = os.path.dirname(code_dir)
 warnings.filterwarnings("ignore")
 
 
-def recommend_movies_by_genre(user_rating, num_recommendations=10):
-    
+def recommendForNewUser(user_rating, num_recommendations=10):
     ratings = pd.read_csv(project_dir + "/data/ratings.csv")
     movies = pd.read_csv(project_dir + "/data/movies.csv")
 
     average_ratings = ratings.groupby("movieId")["rating"].mean().reset_index()
     movies = movies.merge(average_ratings, on="movieId", how="left")
     movies.rename(columns={"rating": "average_rating"}, inplace=True)
-
 
     user_movie_titles = [movie["title"] for movie in user_rating]
     userMovieID = movies[movies["title"].isin(user_movie_titles)]
@@ -80,12 +78,16 @@ def recommend_movies_by_genre(user_rating, num_recommendations=10):
         similar_scores = similarity_df.loc[movie_id].sort_values(ascending=False)[1:num_recommendations+1].index.tolist()
         similar_movies[movie_id] = similar_scores
 
-    recommendations = {}
-    for user_movie_id, similar_movie_ids in similar_movies.items():
+    recommendations = []
+    for similar_movie_ids in similar_movies.values():
         recommended_movies = []
         for sim_movie_id in similar_movie_ids:
             sim_movie_title = movies[movies["movieId"] == sim_movie_id]["title"].values[0]
-            recommended_movies.append(sim_movie_title)
-        recommendations[user_movie_id] = recommended_movies
+            recommended_movies.append({"title": sim_movie_title, "rating": 5.0})  # Replace 5.0 with the actual rating
+        recommendations.extend(recommended_movies)
 
-    return recommendations
+    # Sort recommendations by some criteria, e.g., rating
+    recommendations.sort(key=lambda x: x["rating"], reverse=True)
+
+    # Return a list of recommended movies (titles and ratings)
+    return recommendations[:num_recommendations]

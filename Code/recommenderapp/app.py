@@ -6,7 +6,7 @@ import csv
 import time
 
 sys.path.append("../../")
-from Code.prediction_scripts.item_based import recommend_movies_by_genre 
+from Code.prediction_scripts.item_based import recommendForNewUser 
 from search import Search
 
 app = Flask(__name__)
@@ -27,18 +27,17 @@ def redirected():
 def predict():
     data = json.loads(request.data)  # contains movies
     data1 = data["movie_list"]
+    data1 = [s[:-1] for s in data1]
     training_data = []
     for movie in data1:
         movie_with_rating = {"title": movie, "rating": 5.0}
         training_data.append(movie_with_rating)
-    recommendations = recommend_movies_by_genre(training_data)
-
-    # Get recommendations for the first user movie (you can modify this logic as needed)
-    first_user_movie_id = list(recommendations.keys())[0]
-    recommended_movies = recommendations[first_user_movie_id][:10]
-
-    resp = {"recommendations": recommended_movies}
+    recommendations = recommendForNewUser(training_data)
+    recommendations = recommendations[:5]
+    resp = {"recommendations": recommendations}
+    print(recommendations)  # Add this line for debugging
     return resp
+
 
 
 @app.route("/search", methods=["POST"])
