@@ -47,6 +47,8 @@ $(document).ready(function () {
 
         const movies = {"movie_list": movie_list};
 
+        $('#loader').show()
+
         $.ajax({
             type: "POST",
             url: "/predict",
@@ -88,10 +90,13 @@ $(document).ready(function () {
                 // const li = $('<li/>').text()
                 $('#feedback').prop('disabled', false)
                 console.log("->", response['recommendations']);
+                $('#loader').hide();
             },
             error: function (error) {
                 console.log("ERROR ->" + error );
+                $('#loader').hide();
             }
+            
         });
     });
 
