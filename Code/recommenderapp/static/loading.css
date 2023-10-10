@@ -159,19 +159,3 @@ body {
     opacity: 0;
   }
 }
-.socials {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  display: flex;
-  align-items: center;
-}
-
-.social-link {
-  color: #fff;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  text-decoration: none;
-  margin-right: 12px;
-}
