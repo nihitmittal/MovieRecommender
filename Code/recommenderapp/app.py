@@ -17,7 +17,7 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route("/")
 def landing_page():
-    return render_template("index.html")
+    return render_template("loading.html")
 
 @app.route("/home")
 def redirected():

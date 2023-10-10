@@ -103,16 +103,10 @@ $(document).ready(function () {
     $('#feedback').click(function(){
         const myForm = $('fieldset');
         const data = {};
-        const labels = {
-            1: 'Dislike',
-            2: 'Yet to watch',
-            3: 'Like'
-        };
         console.log(myForm, myForm.length)
         for(let i=0;i<myForm.length;i++){
             const input = $(`#${i}`).find('.active').length;
             console.log(input)
-            // const input = $('#'+i).find('div').find('input:checked')[0] !== undefined ? $('#'+i).find('div').find('input:checked')[0].value : "Yet to be watched";
             const movieName = $('#'+i).find('div').find('li')[0].innerText;
             data[movieName]=input;
         }
@@ -127,15 +121,12 @@ $(document).ready(function () {
             cache: false,
             data: JSON.stringify(data),
             success: function (response) {
-                // console.log("->", response);
-                // $("#dataCollected").css("display", "block");
-                // window.location.href="/success";
+                $('#success-alert').show();
             },
             error: function (error) {
                 console.log("ERROR ->" + error );
             }
         });
-        $('#success-alert').show();
     });
 });
 
