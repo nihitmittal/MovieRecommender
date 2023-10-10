@@ -52,7 +52,7 @@ warnings.filterwarnings("ignore")
 
 
 def recommend_movies_by_genre(user_rating, num_recommendations=10):
-    # Load data
+    
     ratings = pd.read_csv(project_dir + "/data/ratings.csv")
     movies = pd.read_csv(project_dir + "/data/movies.csv")
 
@@ -75,17 +75,17 @@ def recommend_movies_by_genre(user_rating, num_recommendations=10):
 
     similarity_df = pd.DataFrame(cosine_sim, index=movies["movieId"], columns=movies["movieId"])
 
-    # similar_movies = {}
-    # for movie_id in userRatings["movieId"]:
-    #     similar_scores = similarity_df.loc[movie_id].sort_values(ascending=False)[1:num_recommendations+1].index.tolist()
-    #     similar_movies[movie_id] = similar_scores
+    similar_movies = {}
+    for movie_id in userRatings["movieId"]:
+        similar_scores = similarity_df.loc[movie_id].sort_values(ascending=False)[1:num_recommendations+1].index.tolist()
+        similar_movies[movie_id] = similar_scores
 
-    # recommendations = {}
-    # for user_movie_id, similar_movie_ids in similar_movies.items():
-    #     recommended_movies = []
-    #     for sim_movie_id in similar_movie_ids:
-    #         sim_movie_title = movies[movies["movieId"] == sim_movie_id]["title"].values[0]
-    #         recommended_movies.append(sim_movie_title)
-    #     recommendations[user_movie_id] = recommended_movies
+    recommendations = {}
+    for user_movie_id, similar_movie_ids in similar_movies.items():
+        recommended_movies = []
+        for sim_movie_id in similar_movie_ids:
+            sim_movie_title = movies[movies["movieId"] == sim_movie_id]["title"].values[0]
+            recommended_movies.append(sim_movie_title)
+        recommendations[user_movie_id] = recommended_movies
 
-    # return recommendations
+    return recommendations
