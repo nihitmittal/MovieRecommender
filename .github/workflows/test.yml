@@ -29,6 +29,6 @@ jobs:
           cd test
           coverage run -m tests
           coverage run -m -a test_search
-          coverage report -m
+          coverage json
         env: 
           CI: true
