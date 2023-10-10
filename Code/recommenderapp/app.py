@@ -49,7 +49,6 @@ def search():
     resp.status_code = 200
     return resp
 
-
 @app.route("/feedback", methods=["POST"])
 def feedback():
     data = json.loads(request.data)
