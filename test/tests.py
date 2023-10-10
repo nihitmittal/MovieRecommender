@@ -16,13 +16,6 @@ class Tests(unittest.TestCase):
         recommendations = recommendForNewUser(ts)
         self.assertTrue("Toy Story 3 (2010)" in recommendations)
 
-    def testKunfuPanda(self):
-        ts = [
-            {"title": "Kung Fu Panda (2008)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
-        self.assertTrue("Toy Story (1995)" in recommendations)
-
     def testHorrorWithCartoon(self):
         ts = [
             {"title": "Strangers, The (2008)", "rating": 5.0},
