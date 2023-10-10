@@ -1,0 +1,34 @@
+name: test
+on:
+  push:
+   branches:
+    - master
+  pull_request:
+    branches: 
+      - master
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10"]
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Installing and Running tests
+        run: |
+          pip install -r requirements.txt
+          pip install coverage
+          pip install codecov
+          pip install black
+          black .
+          cd test
+          coverage run -m tests
+          coverage run -m -a test_search
+          coverage report -m
+        env: 
+          CI: true
