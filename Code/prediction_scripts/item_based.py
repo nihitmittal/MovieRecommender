@@ -65,34 +65,27 @@ def recommend_movies_by_genre(user_rating, num_recommendations=10):
     userMovieID = movies[movies["title"].isin(user_movie_titles)]
     userRatings = pd.merge(userMovieID, pd.DataFrame(user_rating))
 
-    # Create a binary indicator matrix for movie genres
     genre_columns = movies["genres"].str.get_dummies("|")
 
-    # Concatenate the genre columns with the movies DataFrame
     moviesGenreFilled = pd.concat([movies, genre_columns], axis=1)
 
-    # Drop unnecessary columns
     moviesGenreFilled.drop(["genres"], axis=1, inplace=True)
 
-    # Calculate the cosine similarity between movies based on genre
     cosine_sim = cosine_similarity(genre_columns, genre_columns)
 
-    # Create a DataFrame to store the similarity scores
     similarity_df = pd.DataFrame(cosine_sim, index=movies["movieId"], columns=movies["movieId"])
 
-    # Find the top similar movies for each movie rated by the user
-    similar_movies = {}
-    for movie_id in userRatings["movieId"]:
-        similar_scores = similarity_df.loc[movie_id].sort_values(ascending=False)[1:num_recommendations+1].index.tolist()
-        similar_movies[movie_id] = similar_scores
+    # similar_movies = {}
+    # for movie_id in userRatings["movieId"]:
+    #     similar_scores = similarity_df.loc[movie_id].sort_values(ascending=False)[1:num_recommendations+1].index.tolist()
+    #     similar_movies[movie_id] = similar_scores
 
-    # Calculate movie recommendations based on genre similarity
-    recommendations = {}
-    for user_movie_id, similar_movie_ids in similar_movies.items():
-        recommended_movies = []
-        for sim_movie_id in similar_movie_ids:
-            sim_movie_title = movies[movies["movieId"] == sim_movie_id]["title"].values[0]
-            recommended_movies.append(sim_movie_title)
-        recommendations[user_movie_id] = recommended_movies
+    # recommendations = {}
+    # for user_movie_id, similar_movie_ids in similar_movies.items():
+    #     recommended_movies = []
+    #     for sim_movie_id in similar_movie_ids:
+    #         sim_movie_title = movies[movies["movieId"] == sim_movie_id]["title"].values[0]
+    #         recommended_movies.append(sim_movie_title)
+    #     recommendations[user_movie_id] = recommended_movies
 
-    return recommendations
+    # return recommendations

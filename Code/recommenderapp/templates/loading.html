@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>What movies do you like?</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/loading.css')}}">
+</head>
+<body>
+<div class="loading-container">
+  <div class="loading-text">
+    <span>L</span>
+    <span>O</span>
+    <span>A</span>
+    <span>D</span>
+    <span>I</span>
+    <span>N</span>
+    <span>G</span>
+  </div>
+</div>
+  
+</body>
+  <script>    
+      window.setTimeout(function(){
+        // Move to a new location after 3 secs
+        window.location.href = "http://127.0.0.1:5000/home";
+      }, 3000);
+
+ </script>
+
+</html>

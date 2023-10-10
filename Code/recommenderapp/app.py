@@ -17,8 +17,11 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route("/")
 def landing_page():
-    return render_template("landing_page.html")
+    return render_template("loading.html")
 
+@app.route("/home")
+def redirected():
+    return render_template("landing_page.html")
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -28,6 +31,7 @@ def predict():
     for movie in data1:
         movie_with_rating = {"title": movie, "rating": 5.0}
         training_data.append(movie_with_rating)
+<<<<<<< HEAD
     recommendations = recommend_movies_by_genre(training_data)
 
     # Get recommendations for the first user movie (you can modify this logic as needed)
@@ -35,6 +39,11 @@ def predict():
     recommended_movies = recommendations[first_user_movie_id][:10]
 
     resp = {"recommendations": recommended_movies}
+=======
+    recommendations = recommendForNewUser(training_data)
+    recommendations = recommendations[:5]
+    resp = {"recommendations": recommendations}
+>>>>>>> 6f8fc998e60e03b2c83d41105c6604c3e8360dc3
     return resp
 
 

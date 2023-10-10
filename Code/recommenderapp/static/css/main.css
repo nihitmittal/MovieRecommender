@@ -1,0 +1,55 @@
+body,html {
+  font-family: "Roboto", sans-serif;
+  font-family: "Ubuntu", sans-serif;
+  background-image: linear-gradient(to bottom right, #00C0FF, #18a5b8);
+  height: 100%;
+  width: 100%;
+}
+p {
+  width: 560px;
+  margin: auto;
+}
+
+div {
+  width: 600px;
+  margin: auto;
+}
+
+ul {
+  list-style-type: none;
+  left: -1060px;
+}
+
+div.hlight {
+  color: red;
+}
+.stars i {
+  color: #e6e6e6;
+  font-size: 15px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.stars i.active {
+  color: #ff9c1a;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
