@@ -6,7 +6,7 @@ import csv
 import time
 
 sys.path.append("../../")
-from Code.prediction_scripts.item_based import recommendForNewUser
+from Code.prediction_scripts.item_based import recommend_movies_by_genre 
 from search import Search
 
 app = Flask(__name__)
@@ -28,9 +28,13 @@ def predict():
     for movie in data1:
         movie_with_rating = {"title": movie, "rating": 5.0}
         training_data.append(movie_with_rating)
-    recommendations = recommendForNewUser(training_data)
-    recommendations = recommendations[:10]
-    resp = {"recommendations": recommendations}
+    recommendations = recommend_movies_by_genre(training_data)
+
+    # Get recommendations for the first user movie (you can modify this logic as needed)
+    first_user_movie_id = list(recommendations.keys())[0]
+    recommended_movies = recommendations[first_user_movie_id][:10]
+
+    resp = {"recommendations": recommended_movies}
     return resp
 
 
