@@ -2,6 +2,8 @@
 
     A collaborative filtering-based recommendation engine!
 
+
+
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/AtharvaThorve)
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/raghavnarula/MovieRecommender/graphs/commit-activity)
@@ -11,7 +13,7 @@
 [![GitHub issues-closed](https://img.shields.io/github/issues-closed/raghavnarula/MovieRecommender.svg)](https://github.com/raghavnarula/MovieRecommender/issues?q=is%3Aissue+is%3Aclosed)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4127507.svg)](https://doi.org/10.5281/zenodo.4127507)
+[![DOI](https://zenodo.org/badge/702160028.svg)](https://zenodo.org/badge/latestdoi/702160028)
 [![GitHub release](https://img.shields.io/github/tag/raghavnarula/MovieRecommender.svg )](https://github.com/raghavnarula/MovieRecommender/tags)
 [![black](https://img.shields.io/badge/StyleChecker-black-purple.svg)](https://pypi.org/project/black/)
 
