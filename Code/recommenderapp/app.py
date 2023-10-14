@@ -74,7 +74,7 @@ def feedback():
 @app.route("/comments/<movie>")
 def comments(movie):
     
-    return render_template("view_comments.html")
+    return render_template("view_comments.html", movie=movie)
 
 
 @app.route("/success")
