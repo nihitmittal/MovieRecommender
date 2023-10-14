@@ -4,6 +4,8 @@ import json
 import sys
 import csv
 import time
+import os
+import pandas as pd
 
 sys.path.append("../../")
 from Code.prediction_scripts.item_based import recommendForNewUser 
@@ -59,8 +61,24 @@ def feedback():
     with open("experiment_results/feedback_{}.csv".format(int(time.time())), "w") as f:
         for key in data.keys():
             f.write("%s - %s\n" % (key, data[key]))
+
+    app_dir = os.path.dirname(os.path.abspath(__file__))
+    code_dir = os.path.dirname(app_dir)
+    project_dir = os.path.dirname(code_dir)
+    movies = pd.read_csv(project_dir + "/data/movies.csv")
+
+    with open(project_dir + "/data/ratings.csv", "a") as f:
+        for key in data.keys():
+            # Find the movieId corresponding to the movie title
+            movieId = movies.loc[movies['title'] == key, 'movieId'].values[0]
+            rating=int(data[key])
+            userId=''
+            timestamp=int(time.time())
+            f.write("{},{},{},{}\n".format(userId,movieId, rating,timestamp))
     print(data)
     return data
+
+
 
 
 @app.route("/success")
