@@ -58,6 +58,11 @@ def feedback():
     print(data)
     return data
 
+@app.route("/comments/<movie>")
+def comments(movie):
+    
+    return render_template("view_comments.html")
+
 
 @app.route("/success")
 def success():
