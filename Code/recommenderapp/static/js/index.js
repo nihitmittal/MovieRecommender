@@ -81,11 +81,17 @@ $(document).ready(function () {
                             }
                         });
                     }
+
+                    const viewComments = $(`<input type="button" class="btn btn-outline-info" name="view-comments" id=${element} value="View Comments">`);
+
+                    viewComments.click({movieName: element}, (eV) => window.location.href = "/comments/" + eV.data.movieName);
+
                     const fieldset = $('<fieldset/>', {id:x}).css("border",'0');
                     const li = $('<li/>').text(element);
                     divStars.append(stars);
                     diventry.append(li);
                     diventry.append(divStars);
+                    diventry.append(viewComments);
                     fieldset.append(diventry);
                     ulList.append(fieldset);
                     x+=1;
