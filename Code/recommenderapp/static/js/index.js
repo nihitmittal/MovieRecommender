@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    $(window).on("load",function(){
+        $(".loader-wrapper").fadeOut("slow");
+    });
+
     $('#feedback').prop('disabled', true);
     // $('#success-alert').slideUp();
 
@@ -103,11 +107,6 @@ $(document).ready(function () {
     $('#feedback').click(function(){
         const myForm = $('fieldset');
         const data = {};
-        const labels = {
-            1: 'Dislike',
-            2: 'Yet to watch',
-            3: 'Like'
-        };
         console.log(myForm, myForm.length)
         for(let i=0;i<myForm.length;i++){
             const input = $(`#${i}`).find('.active').length;
