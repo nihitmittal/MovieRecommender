@@ -60,8 +60,11 @@ def search():
 
 @app.route("/feedback", methods=["POST"])
 def feedback():
+    data = json.loads(request.data)
+    
     comments = Comments()
     comments.setComments(data)
+
     app_dir = os.path.dirname(os.path.abspath(__file__))
     code_dir = os.path.dirname(app_dir)
     project_dir = os.path.dirname(code_dir)
@@ -71,10 +74,11 @@ def feedback():
         for key in data.keys():
             # Find the movieId corresponding to the movie title
             movieId = movies.loc[movies["title"] == key, "movieId"].values[0]
-            rating = int(data[key])
+            rating = int(data[key][0])
             userId = ""
             timestamp = int(time.time())
-            f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
+            if rating != 0:
+                f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
     print(data)
     return data
 

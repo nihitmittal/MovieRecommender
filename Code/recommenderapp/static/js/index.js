@@ -68,20 +68,20 @@ $(document).ready(function () {
                     const divStars = $('<div/>').addClass('stars')
 
                     // Comment input Element for comment
-                    var inputElement = $('<input>', {
+                    const inputElement = $('<input>', {
                         type: 'text',      // Input type
-                        id: element,     // Input ID
+                        id: element.title,     // Input ID
                         name: element,   // Input name
                         value:'',
                         placeholder: 'Comment',
                     }).css({
-                            'border':'1px solid black',
-                            'border-left':'none',
-                            'border-right':'none',
-                            'border-top':'none',
-                            'background':'none',
-                            'outline':'none',
-                            });
+                        'border':'1px solid black',
+                        'border-left':'none',
+                        'border-right':'none',
+                        'border-top':'none',
+                        'background':'none',
+                        'outline':'none',
+                    });
                     
                     // Star Rating
                     const stars = $(`
@@ -100,8 +100,7 @@ $(document).ready(function () {
                     }
 
                     const viewComments = $(`<input type="button" class="btn btn-outline-info" name="view-comments" id=${element} value="View Comments">`);
-
-                    viewComments.click({movieName: element}, (eV) => window.location.href = "/comments/" + eV.data.movieName);
+                    viewComments.click({movie: element}, (eV) => window.location.href = "/comments/" + eV.data.movie.title);
 
                     const fieldset = $('<fieldset/>', {id:x}).css("border",'0');
 
@@ -138,12 +137,9 @@ $(document).ready(function () {
         // console.log(myForm, myForm.length)
         for(let i=0;i<myForm.length;i++){
             const input = $(`#${i}`).find('.active').length;
-            // console.log(input)
-            // const input = $('#'+i).find('div').find('input:checked')[0] !== undefined ? $('#'+i).find('div').find('input:checked')[0].value : "Yet to be watched";
-            const movieName = $('#'+i).find('div').find('li')[0].innerText;
+            const movieName = $(`#${i}`).find('div').find('li')[0].innerText;
             const comment = document.getElementById(`${movieName}`).value
             data[movieName]=[input,comment];
-            // data[movieName]=comment
         }
         console.log(data);
 
@@ -156,15 +152,16 @@ $(document).ready(function () {
             cache: false,
             data: JSON.stringify(data),
             success: function (response) {
-                // console.log("->", response);
-                // $("#dataCollected").css("display", "block");
-                // window.location.href="/success";
+                $('#success-alert').show();
+                window.setTimeout(function () {
+                    // Reload window in 1.5 secs
+                    window.location.reload()
+                }, 1500);
             },
             error: function (error) {
                 console.log("ERROR ->" + error );
             }
         });
-        $('#success-alert').show();
     });
 });
 

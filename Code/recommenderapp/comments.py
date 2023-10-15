@@ -22,7 +22,7 @@ class Comments:
         # Putting data into comments.csv
         all_rows = []
         for key,value in data.items():
-            if len(value[1]) > 0: # Save only those fields that are populated
+            if type(value[1]) is str and len(value[1]) > 0: # Save only those fields that are populated
                 all_rows.append(["user1","email_id<1>",key,value[1],datetime.datetime.now()])
 
         with open(file_path, mode='a', newline='') as file:
