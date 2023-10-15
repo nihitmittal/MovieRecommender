@@ -10,7 +10,7 @@ import datetime
 
 
 sys.path.append("../../")
-from Code.prediction_scripts.item_based import recommendForNewUser
+from Code.prediction_scripts.item_based import getSentimentScores, recommendForNewUser
 from search import Search
 from comments import Comments
 
@@ -82,6 +82,20 @@ def feedback():
     #                 f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
     
     print(data)
+
+    # Putting data into comments.csv
+    all_rows = []
+    for key, value in data.items():
+        if len(value[1]) > 0:  # Save only those fields that are populated
+            all_rows.append(
+                ["user1", "email_id<1>", key, value[1], getSentimentScores(value[1]), datetime.datetime.now()]
+            )
+
+    with open("comments.csv", mode="a", newline="") as file:
+        writer = csv.writer(file)
+        for row in all_rows:
+            writer.writerow(row)
+
     return data
 
 @app.route("/comments/<movie>")

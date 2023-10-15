@@ -50,6 +50,42 @@ project_dir = os.path.dirname(code_dir)
 
 warnings.filterwarnings("ignore")
 
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+ 
+
+def getSentimentScores(sentence):
+ 
+    sid_obj = SentimentIntensityAnalyzer()
+ 
+    sentiment_dict = sid_obj.polarity_scores(sentence)
+     
+    if sentiment_dict['compound'] >= 0.05 :
+        return "+ve"
+ 
+    elif sentiment_dict['compound'] <= - 0.05 :
+        return "-ve"
+ 
+    else :
+        return "Neutral"
+    
+# def giveSentimentFeedback(user_comment):
+#     comments =  pd.read_csv(code_dir + "/recommenderapp/comments.csv")
+#     comments['sentiment'] = comments['comment'].apply(getSentimentScores)
+#     comments.to_csv(project_dir, index=False)
+
+# def update_sentiment_score(user_comment):
+
+#     comments =  pd.read_csv(code_dir + "/recommenderapp/comments.csv")
+#     target_username = user_comment['username']
+#     row_index = user_comment.loc[comments['username'] == target_username]
+#     new_sentiment = getSentimentScores(user_comment['comment'])
+    
+#     user_comment.at[row_index, 'comment'] = user_comment
+#     user_comment.at[row_index, 'sentiment'] = new_sentiment
+
+#     user_comment.to_csv(project_dir, index=False)
+    
+
 
 def recommendForNewUser(user_rating, num_recommendations=10):
     ratings = pd.read_csv(project_dir + "/data/ratings.csv")
