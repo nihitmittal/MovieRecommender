@@ -2,9 +2,7 @@ from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS, cross_origin
 import json
 import sys
-import csv
 import time
-import datetime
 
 sys.path.append("../../")
 from Code.prediction_scripts.item_based import recommendForNewUser
@@ -15,7 +13,6 @@ app = Flask(__name__)
 app.secret_key = "secret key"
 
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
-
 
 @app.route("/")
 def landing_page():
@@ -58,18 +55,9 @@ def feedback():
     with open("experiment_results/feedback_{}.csv".format(int(time.time())), "w") as f:
         for key in data.keys():
             f.write("%s - %s\n" % (key, data[key]))
-
-
-    # Putting data into comments.csv
-    all_rows = []
-    for key,value in data.items():
-        if len(value[1]) > 0: # Save only those fields that are populated
-            all_rows.append(["user1","email_id<1>",key,value[1],datetime.datetime.now()])
-
-    with open('comments.csv', mode='a', newline='') as file:
-        writer = csv.writer(file)
-        for row in all_rows:
-            writer.writerow(row)
+    
+    comments = Comments()
+    comments.setComments(data)
     return data
 
 @app.route("/comments/<movie>")
