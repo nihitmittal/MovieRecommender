@@ -9,6 +9,7 @@ import datetime
 sys.path.append("../../")
 from Code.prediction_scripts.item_based import recommendForNewUser
 from search import Search
+from comments import Comments
 
 app = Flask(__name__)
 app.secret_key = "secret key"
@@ -73,8 +74,9 @@ def feedback():
 
 @app.route("/comments/<movie>")
 def comments(movie):
-    
-    return render_template("view_comments.html", movie=movie)
+    comments = Comments()
+    movie_entries = comments.getComments(movie)
+    return render_template("view_comments.html", movie_entries=movie_entries)
 
 
 @app.route("/success")
