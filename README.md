@@ -19,19 +19,20 @@
 
 ### Project 3 Plan
 
-(Please see [wiki](https://github.com/git-ankit/MovieRecommender/wiki/Project-3-Plan) for detailed information.)
+(Please see [wiki](https://github.com/raghavnarula/MovieRecommender/wiki/Project-3-Plan) for detailed information.)
 
 Testing how good the Movie Recommender is :
 
 1. Pick 10-15 very famous movies.
-2. Make sure the movies have diversity based on genre, cast and production style.
-3. Show users a set of 10 randomly generated movies vs top 10 movies recommended by the Movie Recommender.
-4. Also ask the user how satisfied is he/she with the recommended movies.
-5. Collect your results and quantify them.
+2. Make sure the movies have diversity based on genre, cast, and production style.
+3. Show users a set of the top 5 movies recommended by the Movie Recommender.
+4. Let the user give a rating out of 5 and write comments about the movie.
+5. Collect the ratings and improve the collaborative filtering model to give better predictions to other users.
+6. Perform Sentiment analysis on the comments written by the user and determine whether the comment is positive, critical, or neutral.
 
 Note: Our system can be virtually uploaded to sites like [Code SandBox](https://codesandbox.io/), for easier testing.
 
-Make sure you taste your own medicine first and take into account other peoples familiarity with the system before you design your tests.
+Make sure you taste your own medicine first and consider other people's familiarity with the system before you design your tests.
 
 ### Video ▶️
 
@@ -43,7 +44,11 @@ Make sure you taste your own medicine first and take into account other peoples 
 
 ### Tech stack 👨‍💻
 
-- Python, Flask, HTML, CSS and JavaScript
+- Python
+- Flask
+- HTML
+- CSS
+- JavaScript
 
 ### Requirements and Setup ⚙️
 
@@ -54,7 +59,7 @@ Make sure you taste your own medicine first and take into account other peoples 
 - Static code analyser - Pylance
   `Install it in VS Code`
 
-- Install all required python packages
+- Install all required Python packages
   `pip install -r requirements.txt `
 
 ### Usage
@@ -66,7 +71,7 @@ Make sure you taste your own medicine first and take into account other peoples 
 
 ### Documentation 📚
 
-Refer to Wiki page [here](https://github.com/git-ankit/MovieRecommender/wiki/Documentation)
+Refer to the Wiki page [here](https://github.com/git-ankit/MovieRecommender/wiki/Documentation)
 
 ### Bug? 🐛
 
