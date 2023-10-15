@@ -1,8 +1,5 @@
 import pandas as pd
 
-# from app import app
-from flask import jsonify, request, render_template
-import sys
 import os
 
 app_dir = os.path.dirname(os.path.abspath(__file__))
@@ -47,7 +44,3 @@ class Search:
 
     def resultsTop10(self, word):
         return self.results(word)[:10]
-
-
-if __name__ == "__main__":
-    app.run()

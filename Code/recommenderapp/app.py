@@ -2,21 +2,22 @@ from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS, cross_origin
 import json
 import sys
-import csv
 import time
+
 import os
 import pandas as pd
 import datetime
 
+
 sys.path.append("../../")
 from Code.prediction_scripts.item_based import recommendForNewUser
 from search import Search
+from comments import Comments
 
 app = Flask(__name__)
 app.secret_key = "secret key"
 
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
-
 
 @app.route("/")
 def landing_page():
@@ -59,11 +60,10 @@ def search():
 
 @app.route("/feedback", methods=["POST"])
 def feedback():
-    # Putting data into experiment_results
     data = json.loads(request.data)
-    with open("experiment_results/feedback_{}.csv".format(int(time.time())), "w") as f:
-        for key in data.keys():
-            f.write("%s - %s\n" % (key, data[key]))
+    
+    comments = Comments()
+    comments.setComments(data)
 
     app_dir = os.path.dirname(os.path.abspath(__file__))
     code_dir = os.path.dirname(app_dir)
@@ -74,26 +74,19 @@ def feedback():
         for key in data.keys():
             # Find the movieId corresponding to the movie title
             movieId = movies.loc[movies["title"] == key, "movieId"].values[0]
-            rating = int(data[key])
+            rating = int(data[key][0])
             userId = ""
             timestamp = int(time.time())
-            f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
+            if rating != 0:
+                f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
     print(data)
-
-    # Putting data into comments.csv
-    all_rows = []
-    for key, value in data.items():
-        if len(value[1]) > 0:  # Save only those fields that are populated
-            all_rows.append(
-                ["user1", "email_id<1>", key, value[1], datetime.datetime.now()]
-            )
-
-    with open("comments.csv", mode="a", newline="") as file:
-        writer = csv.writer(file)
-        for row in all_rows:
-            writer.writerow(row)
-
     return data
+
+@app.route("/comments/<movie>")
+def comments(movie):
+    comments = Comments()
+    movie_entries = comments.getComments(movie)
+    return render_template("view_comments.html", movie_entries=movie_entries)
 
 
 @app.route("/success")
