@@ -85,11 +85,11 @@ $(document).ready(function () {
                     
                     // Star Rating
                     const stars = $(`
-                        <i class="fa-solid fa-star" id=${x}></i>
-                        <i class="fa-solid fa-star" id=${x}></i>
-                        <i class="fa-solid fa-star" id=${x}></i>
-                        <i class="fa-solid fa-star" id=${x}></i>
-                        <i class="fa-solid fa-star" id=${x}></i>
+                        <i class="fa-solid fa-star" id=${x} style="padding:10px 0px"></i>
+                        <i class="fa-solid fa-star" id=${x} style="padding:10px 0px"></i>
+                        <i class="fa-solid fa-star" id=${x} style="padding:10px 0px"></i>
+                        <i class="fa-solid fa-star" id=${x} style="padding:10px 0px"></i>
+                        <i class="fa-solid fa-star" id=${x} style="padding:10px 0px"></i>
                     `);
                     for(let i = 0; i <stars.length; i += 2) {
                         stars[i].addEventListener('click', (e) => {
@@ -130,8 +130,6 @@ $(document).ready(function () {
     });
 
     $('#feedback').click(function(){
-        // function_two()
-        // console.log(document.getElementById("Toy Story (1995)").value)
         const myForm = $('fieldset');
         const data = {};
         // console.log(myForm, myForm.length)
@@ -173,8 +171,4 @@ const removeElement = (event) => {
             event.data.ulList.splice(i, 1);
         }
     }
-}
-const function_two = () =>{
-    console.log("fasdfakf")
-    document.getElementById("Toy Story (1995)").value = "Sucker"
 }
