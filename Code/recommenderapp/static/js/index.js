@@ -51,7 +51,7 @@ $(document).ready(function () {
         const movies = {"movie_list": movie_list};
 
         $('#loader').show()
-
+        
         $.ajax({
             type: "POST",
             url: "/predict",
@@ -82,7 +82,7 @@ $(document).ready(function () {
                         'background':'none',
                         'outline':'none',
                     });
-                    
+
                     // Star Rating
                     const stars = $(`
                         <i class="fa-solid fa-star" id=${x} style="padding:10px 0px"></i>
@@ -116,50 +116,66 @@ $(document).ready(function () {
                     x+=1;
                 });
                 
+                values = fields_append()
+                $('#recos').append(values[0])
+                $('#recos').append(values[1])
+
                 // const li = $('<li/>').text()
                 $('#feedback').prop('disabled', false)
                 console.log("->", response['recommendations']);
                 $('#loader').hide();
+            
+
             },
             error: function (error) {
                 console.log("ERROR ->" + error );
                 $('#loader').hide();
             }
-            
         });
+
+        
+
     });
 
     $('#feedback').click(function(){
         const myForm = $('fieldset');
         const data = {};
-        // console.log(myForm, myForm.length)
+
         for(let i=0;i<myForm.length;i++){
             const input = $(`#${i}`).find('.active').length;
             const movieName = $(`#${i}`).find('div').find('li')[0].innerText;
             const comment = document.getElementById(`${movieName}`).value
             data[movieName]=[input,comment];
         }
+        data["username"] = document.getElementById(`username`).value
+        data["emailId"] = document.getElementById(`emailId`).value
         console.log(data);
 
-        $.ajax({
-            type: "POST",
-            url: "/feedback",
-            dataType: "json",
-            contentType: "application/json;charset=UTF-8",
-            traditional: "true",
-            cache: false,
-            data: JSON.stringify(data),
-            success: function (response) {
-                $('#success-alert').show();
-                window.setTimeout(function () {
-                    // Reload window in 1.5 secs
-                    window.location.reload()
-                }, 1500);
-            },
-            error: function (error) {
-                console.log("ERROR ->" + error );
-            }
-        });
+        if (data["emailId"].length > 0 && data["username"].length > 0){
+
+            $.ajax({
+                type: "POST",
+                url: "/feedback",
+                dataType: "json",
+                contentType: "application/json;charset=UTF-8",
+                traditional: "true",
+                cache: false,
+                data: JSON.stringify(data),
+                success: function (response) {
+                    $('#success-alert').show();
+                    window.setTimeout(function () {
+                        // Reload window in 1.5 secs
+                        window.location.reload()
+                    }, 1500);
+                },
+                error: function (error) {
+                    console.log("ERROR ->" + error );
+                }
+            });
+        }   
+        else{
+            $('#fail-alert').show();
+        }
     });
 });
 
@@ -171,4 +187,41 @@ const removeElement = (event) => {
             event.data.ulList.splice(i, 1);
         }
     }
+}
+
+const fields_append = ()=>{
+    const username = $('<input>', {
+        type: 'text',      // Input type
+        id: "username",     // Input ID
+        name: "usernameElement",   // Input name
+        value:'',
+        placeholder: 'Username',
+    }).css({
+        'border':'1px solid black',
+        'border-left':'none',
+        'border-right':'none',
+        'border-top':'none',
+        'background':'none',
+        'outline':'none',
+    });
+
+
+    const emailId = $('<input>', {
+        type: 'text',      // Input type
+        id: "emailId",     // Input ID
+        name: "emailIdElement",   // Input name
+        value:'',
+        placeholder: 'Email ID',
+    }).css({
+        'border':'1px solid black',
+        'border-left':'none',
+        'border-right':'none',
+        'border-top':'none',
+        'background':'none',
+        'outline':'none',
+        'display':'block',
+        'margin':'10px 0px',
+    });
+
+    return [username,emailId]
 }

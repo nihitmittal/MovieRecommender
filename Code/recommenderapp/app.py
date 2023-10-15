@@ -69,16 +69,18 @@ def feedback():
     code_dir = os.path.dirname(app_dir)
     project_dir = os.path.dirname(code_dir)
     movies = pd.read_csv(project_dir + "/data/movies.csv")
-
-    with open(project_dir + "/data/ratings.csv", "a") as f:
-        for key in data.keys():
-            # Find the movieId corresponding to the movie title
-            movieId = movies.loc[movies["title"] == key, "movieId"].values[0]
-            rating = int(data[key][0])
-            userId = ""
-            timestamp = int(time.time())
-            if rating != 0:
-                f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
+    # with open(project_dir + "/data/ratings.csv", "a") as f:
+    #     for key,value in data.items():
+    #         print(key,"====")
+    #         if type(data[key]) is list:
+    #             # Find the movieId corresponding to the movie title
+    #             movieId = movies.loc[movies["title"] == key, "movieId"]
+    #             rating = int(data[key][0])
+    #             userId = ""
+    #             timestamp = int(time.time())
+    #             if rating != 0:
+    #                 f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
+    
     print(data)
     return data
 

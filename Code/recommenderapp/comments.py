@@ -21,10 +21,11 @@ class Comments:
     def setComments(self, data):
         # Putting data into comments.csv
         all_rows = []
+        username,emailId = data["username"],data["emailId"]
         for key,value in data.items():
-            if type(value[1]) is str and len(value[1]) > 0: # Save only those fields that are populated
-                all_rows.append(["user1","email_id<1>",key,value[1],datetime.datetime.now()])
-
+            if type(value) is list:
+                if type(value[1]) is str and len(value[1]) > 0: # Save only those fields that are populated
+                    all_rows.append([username,emailId,key,value[1],datetime.datetime.now()])
         with open(file_path, mode='a', newline='') as file:
             writer = csv.writer(file)
             for row in all_rows:
