@@ -71,7 +71,7 @@ Make sure you taste your own medicine first and consider other people's familiar
 
 ### Documentation 📚
 
-Refer to the Wiki page [here](https://github.com/git-ankit/MovieRecommender/wiki/Documentation)
+Refer to the Wiki page [here](https://github.com/raghavnarula/MovieRecommender/wiki/Documentation)
 
 ### Bug? 🐛
 
