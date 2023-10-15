@@ -100,8 +100,9 @@ $(document).ready(function () {
                     }
                     
                     const fieldset = $('<fieldset/>', {id:x}).css("border",'0');
-                    const li = $('<li/>').text(element);
-                    const textBox = $()
+
+                    const li = $('<li/>').text(element.title);
+
                     divStars.append(stars);
                     diventry.append(li);
                     diventry.append(inputElement)

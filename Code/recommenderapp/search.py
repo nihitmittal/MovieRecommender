@@ -11,7 +11,6 @@ project_dir = os.path.dirname(code_dir)
 
 
 class Search:
-
     df = pd.read_csv(project_dir + "/data/movies.csv")
 
     def __init__(self):
