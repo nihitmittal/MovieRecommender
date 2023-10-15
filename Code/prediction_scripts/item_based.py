@@ -71,19 +71,29 @@ def recommendForNewUser(user_rating, num_recommendations=10):
 
     cosine_sim = cosine_similarity(genre_columns, genre_columns)
 
-    similarity_df = pd.DataFrame(cosine_sim, index=movies["movieId"], columns=movies["movieId"])
+    similarity_df = pd.DataFrame(
+        cosine_sim, index=movies["movieId"], columns=movies["movieId"]
+    )
 
     similar_movies = {}
     for movie_id in userRatings["movieId"]:
-        similar_scores = similarity_df.loc[movie_id].sort_values(ascending=False)[1:num_recommendations+1].index.tolist()
+        similar_scores = (
+            similarity_df.loc[movie_id]
+            .sort_values(ascending=False)[1 : num_recommendations + 1]
+            .index.tolist()
+        )
         similar_movies[movie_id] = similar_scores
 
     recommendations = []
     for similar_movie_ids in similar_movies.values():
         recommended_movies = []
         for sim_movie_id in similar_movie_ids:
-            sim_movie_title = movies[movies["movieId"] == sim_movie_id]["title"].values[0]
-            recommended_movies.append({"title": sim_movie_title, "rating": 5.0})  # Replace 5.0 with the actual rating
+            sim_movie_title = movies[movies["movieId"] == sim_movie_id]["title"].values[
+                0
+            ]
+            recommended_movies.append(
+                {"title": sim_movie_title, "rating": 5.0}
+            )  # Replace 5.0 with the actual rating
         recommendations.extend(recommended_movies)
 
     # Sort recommendations by some criteria, e.g., rating

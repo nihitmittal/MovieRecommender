@@ -9,7 +9,7 @@ import pandas as pd
 import datetime
 
 sys.path.append("../../")
-from Code.prediction_scripts.item_based import recommendForNewUser 
+from Code.prediction_scripts.item_based import recommendForNewUser
 from search import Search
 
 app = Flask(__name__)
@@ -22,9 +22,11 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 def landing_page():
     return render_template("loading.html")
 
+
 @app.route("/home")
 def redirected():
     return render_template("landing_page.html")
+
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -42,7 +44,6 @@ def predict():
     return resp
 
 
-
 @app.route("/search", methods=["POST"])
 def search():
     term = request.form["q"]
@@ -55,6 +56,7 @@ def search():
     resp.status_code = 200
     return resp
 
+
 @app.route("/feedback", methods=["POST"])
 def feedback():
     # Putting data into experiment_results
@@ -62,7 +64,6 @@ def feedback():
     with open("experiment_results/feedback_{}.csv".format(int(time.time())), "w") as f:
         for key in data.keys():
             f.write("%s - %s\n" % (key, data[key]))
-
 
     app_dir = os.path.dirname(os.path.abspath(__file__))
     code_dir = os.path.dirname(app_dir)
@@ -72,21 +73,22 @@ def feedback():
     with open(project_dir + "/data/ratings.csv", "a") as f:
         for key in data.keys():
             # Find the movieId corresponding to the movie title
-            movieId = movies.loc[movies['title'] == key, 'movieId'].values[0]
-            rating=int(data[key])
-            userId=''
-            timestamp=int(time.time())
-            f.write("{},{},{},{}\n".format(userId,movieId, rating,timestamp))
+            movieId = movies.loc[movies["title"] == key, "movieId"].values[0]
+            rating = int(data[key])
+            userId = ""
+            timestamp = int(time.time())
+            f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
     print(data)
-
 
     # Putting data into comments.csv
     all_rows = []
-    for key,value in data.items():
-        if len(value[1]) > 0: # Save only those fields that are populated
-            all_rows.append(["user1","email_id<1>",key,value[1],datetime.datetime.now()])
+    for key, value in data.items():
+        if len(value[1]) > 0:  # Save only those fields that are populated
+            all_rows.append(
+                ["user1", "email_id<1>", key, value[1], datetime.datetime.now()]
+            )
 
-    with open('comments.csv', mode='a', newline='') as file:
+    with open("comments.csv", mode="a", newline="") as file:
         writer = csv.writer(file)
         for row in all_rows:
             writer.writerow(row)
@@ -94,11 +96,10 @@ def feedback():
     return data
 
 
-
-
 @app.route("/success")
 def success():
     return render_template("success.html")
+
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
