@@ -5,7 +5,6 @@ $(document).ready(function () {
     });
 
     $('#feedback').prop('disabled', true);
-    // $('#success-alert').slideUp();
 
     $(function () {
         $("#searchBox").autocomplete({
@@ -67,6 +66,24 @@ $(document).ready(function () {
                 response['recommendations'].forEach(element => {
                     const diventry = $('<div/>').attr('id', 'div-entry');
                     const divStars = $('<div/>').addClass('stars')
+
+                    // Comment input Element for comment
+                    var inputElement = $('<input>', {
+                        type: 'text',      // Input type
+                        id: element,     // Input ID
+                        name: element,   // Input name
+                        value:'',
+                        placeholder: 'Comment',
+                    }).css({
+                            'border':'1px solid black',
+                            'border-left':'none',
+                            'border-right':'none',
+                            'border-top':'none',
+                            'background':'none',
+                            'outline':'none',
+                            });
+                    
+                    // Star Rating
                     const stars = $(`
                         <i class="fa-solid fa-star" id=${x}></i>
                         <i class="fa-solid fa-star" id=${x}></i>
@@ -74,17 +91,21 @@ $(document).ready(function () {
                         <i class="fa-solid fa-star" id=${x}></i>
                         <i class="fa-solid fa-star" id=${x}></i>
                     `);
-                    for(let i = 0; i < stars.length; i += 2) {
+                    for(let i = 0; i <stars.length; i += 2) {
                         stars[i].addEventListener('click', (e) => {
                             for(let j = 0; j < stars.length; j += 2) {
                                 i >= j ? stars[j].classList.add('active') : stars[j].classList.remove('active')
                             }
                         });
                     }
+                    
                     const fieldset = $('<fieldset/>', {id:x}).css("border",'0');
+
                     const li = $('<li/>').text(element.title);
+
                     divStars.append(stars);
                     diventry.append(li);
+                    diventry.append(inputElement)
                     diventry.append(divStars);
                     fieldset.append(diventry);
                     ulList.append(fieldset);
@@ -105,15 +126,19 @@ $(document).ready(function () {
     });
 
     $('#feedback').click(function(){
+        // function_two()
+        // console.log(document.getElementById("Toy Story (1995)").value)
         const myForm = $('fieldset');
         const data = {};
-        console.log(myForm, myForm.length)
+        // console.log(myForm, myForm.length)
         for(let i=0;i<myForm.length;i++){
             const input = $(`#${i}`).find('.active').length;
-            console.log(input)
+            // console.log(input)
             // const input = $('#'+i).find('div').find('input:checked')[0] !== undefined ? $('#'+i).find('div').find('input:checked')[0].value : "Yet to be watched";
             const movieName = $('#'+i).find('div').find('li')[0].innerText;
-            data[movieName]=input;
+            const comment = document.getElementById(`${movieName}`).value
+            data[movieName]=[input,comment];
+            // data[movieName]=comment
         }
         console.log(data);
 
@@ -146,4 +171,8 @@ const removeElement = (event) => {
             event.data.ulList.splice(i, 1);
         }
     }
+}
+const function_two = () =>{
+    console.log("fasdfakf")
+    document.getElementById("Toy Story (1995)").value = "Sucker"
 }
