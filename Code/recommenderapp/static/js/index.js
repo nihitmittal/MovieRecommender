@@ -104,8 +104,9 @@ $(document).ready(function () {
                     viewComments.click({movieName: element}, (eV) => window.location.href = "/comments/" + eV.data.movieName);
 
                     const fieldset = $('<fieldset/>', {id:x}).css("border",'0');
-                    const li = $('<li/>').text(element);
-                    const textBox = $()
+
+                    const li = $('<li/>').text(element.title);
+
                     divStars.append(stars);
                     diventry.append(li);
                     diventry.append(inputElement)
