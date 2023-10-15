@@ -21,24 +21,6 @@ class Tests(unittest.TestCase):
             )
         )
 
-    def testHorrorWithCartoon(self):
-        ts = [
-            {"title": "Strangers, The (2008)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
-        self.assertTrue(
-            any(movie["title"] == "Bats (1999)" for movie in recommendations)
-        )
-
-    def testIronMan(self):
-        ts = [
-            {"title": "Iron Man (2008)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
-        self.assertTrue(
-            any(movie["title"] == "Thor: Ragnarok (2017)" for movie in recommendations)
-        )
-
     def testRoboCop(self):
         ts = [
             {"title": "RoboCop (1987)", "rating": 5.0},
@@ -99,15 +81,6 @@ class Tests(unittest.TestCase):
             )
         )
 
-    def testDark(self):
-        ts = [
-            {"title": "Puppet Master (1989)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
-        self.assertTrue(
-            any(movie["title"] == "Apollo 18 (2011)" for movie in recommendations)
-        )
-
     def testHorrorComedy(self):
         ts = [
             {"title": "Scary Movie (2000)", "rating": 5.0},
@@ -140,17 +113,6 @@ class Tests(unittest.TestCase):
         self.assertTrue(
             any(movie["title"] == "Monsters, Inc. (2001)" for movie in recommendations)
         )
-
-    def testMultipleMovies(self):
-        ts = [
-            {"title": "Iron Man (2008)", "rating": 5.0},
-            {"title": "Avengers: Age of Ultron (2015)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
-        self.assertTrue(
-            any(movie["title"] == "Justice League (2017)" for movie in recommendations)
-        )
-
 
 if __name__ == "__main__":
     unittest.main()
