@@ -6,11 +6,10 @@ import time
 
 import os
 import pandas as pd
-import datetime
 
 
 sys.path.append("../../")
-from Code.prediction_scripts.item_based import recommendForNewUser
+from Code.prediction_scripts.item_based import getSentimentScores, recommendForNewUser
 from search import Search
 from comments import Comments
 
@@ -18,6 +17,7 @@ app = Flask(__name__)
 app.secret_key = "secret key"
 
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 @app.route("/")
 def landing_page():
@@ -61,7 +61,7 @@ def search():
 @app.route("/feedback", methods=["POST"])
 def feedback():
     data = json.loads(request.data)
-    
+
     comments = Comments()
     comments.setComments(data)
 
@@ -69,20 +69,19 @@ def feedback():
     code_dir = os.path.dirname(app_dir)
     project_dir = os.path.dirname(code_dir)
     movies = pd.read_csv(project_dir + "/data/movies.csv")
-    # with open(project_dir + "/data/ratings.csv", "a") as f:
-    #     for key,value in data.items():
-    #         print(key,"====")
-    #         if type(data[key]) is list:
-    #             # Find the movieId corresponding to the movie title
-    #             movieId = movies.loc[movies["title"] == key, "movieId"]
-    #             rating = int(data[key][0])
-    #             userId = ""
-    #             timestamp = int(time.time())
-    #             if rating != 0:
-    #                 f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
-    
-    print(data)
+    with open(project_dir + "/data/ratings.csv", "a") as f:
+        for key, value in data.items():
+            if type(data[key]) is list:
+                # Find the movieId corresponding to the movie title
+                movieId = movies.loc[movies["title"] == key, "movieId"].values[0]
+                rating = int(data[key][0])
+                userId = ""
+                timestamp = int(time.time())
+                if rating != 0:
+                    f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
+
     return data
+
 
 @app.route("/comments/<movie>")
 def comments(movie):
