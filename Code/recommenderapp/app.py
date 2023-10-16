@@ -9,7 +9,7 @@ import pandas as pd
 
 
 sys.path.append("../../")
-from Code.prediction_scripts.item_based import recommendForNewUser
+from Code.prediction_scripts.item_based import getSentimentScores, recommendForNewUser
 from search import Search
 from comments import Comments
 
