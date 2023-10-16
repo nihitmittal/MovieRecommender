@@ -18,6 +18,7 @@ app.secret_key = "secret key"
 
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
+
 @app.route("/")
 def landing_page():
     return render_template("loading.html")
@@ -60,7 +61,7 @@ def search():
 @app.route("/feedback", methods=["POST"])
 def feedback():
     data = json.loads(request.data)
-    
+
     comments = Comments()
     comments.setComments(data)
 
@@ -69,7 +70,7 @@ def feedback():
     project_dir = os.path.dirname(code_dir)
     movies = pd.read_csv(project_dir + "/data/movies.csv")
     with open(project_dir + "/data/ratings.csv", "a") as f:
-        for key,value in data.items():
+        for key, value in data.items():
             if type(data[key]) is list:
                 # Find the movieId corresponding to the movie title
                 movieId = movies.loc[movies["title"] == key, "movieId"].values[0]
@@ -78,8 +79,9 @@ def feedback():
                 timestamp = int(time.time())
                 if rating != 0:
                     f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
-    
+
     return data
+
 
 @app.route("/comments/<movie>")
 def comments(movie):

@@ -10,23 +10,23 @@ project_dir = os.path.dirname(code_dir)
 warnings.filterwarnings("ignore")
 
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
- 
+
 
 def getSentimentScores(sentence):
- 
     sid_obj = SentimentIntensityAnalyzer()
- 
+
     sentiment_dict = sid_obj.polarity_scores(sentence)
-     
-    if sentiment_dict['compound'] >= 0.05 :
+
+    if sentiment_dict["compound"] >= 0.05:
         return "Supportive"
- 
-    elif sentiment_dict['compound'] <= - 0.05 :
+
+    elif sentiment_dict["compound"] <= -0.05:
         return "Critical"
- 
-    else :
+
+    else:
         return "Neutral"
-    
+
+
 def recommendForNewUser(user_rating, num_recommendations=10):
     ratings = pd.read_csv(project_dir + "/data/ratings.csv")
     movies = pd.read_csv(project_dir + "/data/movies.csv")

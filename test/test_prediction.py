@@ -114,5 +114,6 @@ class Tests(unittest.TestCase):
             any(movie["title"] == "Monsters, Inc. (2001)" for movie in recommendations)
         )
 
+
 if __name__ == "__main__":
     unittest.main()

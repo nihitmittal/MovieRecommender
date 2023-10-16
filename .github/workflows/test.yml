@@ -22,13 +22,11 @@ jobs:
       - name: Installing and Running tests
         run: |
           pip install -r requirements.txt
-          pip install coverage
-          pip install codecov
-          pip install black
           black .
           cd test
-          coverage run -m tests
+          coverage run -m test_prediction
           coverage run -m -a test_search
+          coverage run -m -a test_sentiment
           coverage json
         env: 
           CI: true
