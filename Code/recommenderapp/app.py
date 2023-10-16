@@ -6,11 +6,10 @@ import time
 
 import os
 import pandas as pd
-import datetime
 
 
 sys.path.append("../../")
-from Code.prediction_scripts.item_based import getSentimentScores, recommendForNewUser
+from Code.prediction_scripts.item_based import recommendForNewUser
 from search import Search
 from comments import Comments
 
@@ -69,33 +68,17 @@ def feedback():
     code_dir = os.path.dirname(app_dir)
     project_dir = os.path.dirname(code_dir)
     movies = pd.read_csv(project_dir + "/data/movies.csv")
-    # with open(project_dir + "/data/ratings.csv", "a") as f:
-    #     for key,value in data.items():
-    #         print(key,"====")
-    #         if type(data[key]) is list:
-    #             # Find the movieId corresponding to the movie title
-    #             movieId = movies.loc[movies["title"] == key, "movieId"]
-    #             rating = int(data[key][0])
-    #             userId = ""
-    #             timestamp = int(time.time())
-    #             if rating != 0:
-    #                 f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
+    with open(project_dir + "/data/ratings.csv", "a") as f:
+        for key,value in data.items():
+            if type(data[key]) is list:
+                # Find the movieId corresponding to the movie title
+                movieId = movies.loc[movies["title"] == key, "movieId"].values[0]
+                rating = int(data[key][0])
+                userId = ""
+                timestamp = int(time.time())
+                if rating != 0:
+                    f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
     
-    print(data)
-
-    # Putting data into comments.csv
-    all_rows = []
-    for key, value in data.items():
-        if len(value[1]) > 0:  # Save only those fields that are populated
-            all_rows.append(
-                ["user1", "email_id<1>", key, value[1], getSentimentScores(value[1]), datetime.datetime.now()]
-            )
-
-    with open("comments.csv", mode="a", newline="") as file:
-        writer = csv.writer(file)
-        for row in all_rows:
-            writer.writerow(row)
-
     return data
 
 @app.route("/comments/<movie>")
