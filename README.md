@@ -51,16 +51,28 @@ Make sure you taste your own medicine first and consider other people's familiar
 
 ### Requirements and Setup ⚙️
 
-- python 3.5 +
-- pip
+- Python 3.9 + [Install Python On Your System](https://docs.python.org/3.9/using/index.html)
+- Setup a Virtual Environment in Python [Setup Virtualenv](https://docs.python.org/3/library/venv.html) 
+- Activate Virtualenv
+  * <strong>Linux / Unix</strong>
+
+  ``` bash
+      source env/bin/activate
+  ```
+  * <strong>Windows</strong>
+  ``` cmd
+    venv\Scripts\activate
+  ```  
 - Style check - black
-  `pip install black`
-- Static code analyser - Pylance
-  `Install it in VS Code`
+  ``` bash
+  pip install black
+  ```
+- Install Static Code Analyser Pylance in your Favourite IDE/ Text Editor <strong>(Optional)</strong>
 
 - Install all required Python packages
-  `pip install -r requirements.txt `
-
+  ``` bash
+  pip install -r requirements.txt
+  ```
 ### Usage
 
 ``` bash
