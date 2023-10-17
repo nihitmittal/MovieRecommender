@@ -1,6 +1,7 @@
 # <i>Movie Recommendation 🎥 </i>
 
-    A collaborative filtering-based recommendation engine!
+
+<h2 style="text-align: center; color:#9EF8EE">A Collaborative Filtering-Based Recommendation System<h2>
 
 
 
@@ -32,7 +33,12 @@ Testing how good the Movie Recommender is :
 
 Note: Our system can be virtually uploaded to sites like [Code SandBox](https://codesandbox.io/), for easier testing.
 
-Make sure you taste your own medicine first and consider other people's familiarity with the system before you design your tests.
+### Tech stack 👨‍💻
+
+|<img src="images/python.svg">     | <img src="images/flask.svg">      | <img src="images/html5.svg">         |<img src="images/css3.svg">       | <img src="images/javascript.svg">        | 
+| -------- | ------- | -------- | ------- | -------|
+| Python | Flask     | HTML | CSS     | Javascript |
+
 
 ### Video ▶️
 
@@ -42,11 +48,6 @@ Make sure you taste your own medicine first and consider other people's familiar
 
 ![Demo](https://raw.githubusercontent.com/git-ankit/MovieRecommender/master/asset/demo.gif)
 
-### Tech stack 👨‍💻
-
-|<img src="images/python.svg">     | <img src="images/flask.svg">      | <img src="images/html5.svg">         |<img src="images/css3.svg">       | <img src="images/javascript.svg">        | 
-| -------- | ------- | -------- | ------- | -------|
-| Python | Flask     | HTML | CSS     | Javascript |
 
 
 ### Requirements and Setup ⚙️
