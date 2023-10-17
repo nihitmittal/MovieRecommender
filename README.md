@@ -44,11 +44,10 @@ Make sure you taste your own medicine first and consider other people's familiar
 
 ### Tech stack 👨‍💻
 
-- Python
-- Flask
-- HTML
-- CSS
-- JavaScript
+|<img src="images/python.svg">     | <img src="images/flask.svg">      | <img src="images/html5.svg">         |<img src="images/css3.svg">       | <img src="images/javascript.svg">        | 
+| -------- | ------- | -------- | ------- | -------|
+| Python | Flask     | HTML | CSS     | Javascript |
+
 
 ### Requirements and Setup ⚙️
 
@@ -64,9 +63,10 @@ Make sure you taste your own medicine first and consider other people's familiar
 
 ### Usage
 
-1. `cd Code/recommenderapp`
-2. `python3 app.py`
-
+``` bash
+cd Code/recommenderapp
+python3 app.py
+```
 ![Execution](https://raw.githubusercontent.com/git-ankit/MovieRecommender/master/asset/execution.gif)
 
 ### Documentation 📚
