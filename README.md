@@ -42,7 +42,7 @@ Note: Our system can be virtually uploaded to sites like [Code SandBox](https://
 
 ### Video ▶️
 
-<a  href="https://youtu.be/OSjpryqI1RQ"><img height=150 width=500 alt="logo here" src="https://raw.githubusercontent.com/git-ankit/MovieRecommender/master/asset/group12.png"/></a>
+[Full Feature Video](https://www.youtube.com/watch?v=TcP7OA-WG2A)
 
 ### Working 📱
 
