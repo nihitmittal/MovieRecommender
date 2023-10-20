@@ -88,7 +88,7 @@ Refer to the Wiki page [here](https://github.com/raghavnarula/MovieRecommender/w
 
 
 ## Contributions to the Project
-Please refer to the [Contributing.md](https://github.com/raghavnarula/MovieRecommender/blob/master/CONTRIBUTING.md)) if you want to contrbute to the Movie Recommender source code. Follow all the guidelines mentioned and raise a pull request for the developers to review before the code goes to the main source code.
+Please refer to the [Contributing.md](https://github.com/raghavnarula/MovieRecommender/blob/master/CONTRIBUTING.md) if you want to contrbute to the Movie Recommender source code. Follow all the guidelines mentioned and raise a pull request for the developers to review before the code goes to the main source code.
 
 
 ### Bug? 🐛
