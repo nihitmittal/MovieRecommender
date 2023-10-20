@@ -3,8 +3,6 @@
 
 <h2 style="text-align: center; color:#9EF8EE">A Collaborative Filtering-Based Recommendation System<h2>
 
-
-
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/AtharvaThorve)
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/raghavnarula/MovieRecommender/graphs/commit-activity)
@@ -18,7 +16,7 @@
 [![GitHub release](https://img.shields.io/github/tag/raghavnarula/MovieRecommender.svg )](https://github.com/raghavnarula/MovieRecommender/tags)
 [![black](https://img.shields.io/badge/StyleChecker-black-purple.svg)](https://pypi.org/project/black/)
 
-### Project 3 Plan
+<h2>Project 3 Plan</h2>
 
 (Please see [wiki](https://github.com/raghavnarula/MovieRecommender/wiki/Project-3-Plan) for detailed information.)
 
@@ -33,24 +31,26 @@ Testing how good the Movie Recommender is :
 
 Note: Our system can be virtually uploaded to sites like [Code SandBox](https://codesandbox.io/), for easier testing.
 
-### Tech stack 👨‍💻
+<h2>Tech stack 👨‍💻</h2>
 
 |<img src="images/python.svg">     | <img src="images/flask.svg">      | <img src="images/html5.svg">         |<img src="images/css3.svg">       | <img src="images/javascript.svg">        | 
 | -------- | ------- | -------- | ------- | -------|
 | Python | Flask     | HTML | CSS     | Javascript |
 
 
-### Video ▶️
+<h2>Video ▶️</h2>
 
-[Full Feature Video](https://www.youtube.com/watch?v=TcP7OA-WG2A)
-
-### Working 📱
-
-![Demo](https://raw.githubusercontent.com/git-ankit/MovieRecommender/master/asset/demo.gif)
+https://github.com/raghavnarula/MovieRecommender/assets/48481966/7e36e523-a48d-4342-869a-c676c329ab23
 
 
 
-### Requirements and Setup ⚙️
+
+<h2>Working 📱</h2>
+
+
+https://github.com/raghavnarula/MovieRecommender/assets/48481966/2c0e8702-bbf7-43c4-b703-1b3681b58925
+
+<h2>Requirements and Setup ⚙️</h2>
 
 - Python 3.9 + [Install Python On Your System](https://docs.python.org/3.9/using/index.html)
 - Setup a Virtual Environment in Python [Setup Virtualenv](https://docs.python.org/3/library/venv.html) 
@@ -74,7 +74,7 @@ Note: Our system can be virtually uploaded to sites like [Code SandBox](https://
   ``` bash
   pip install -r requirements.txt
   ```
-### Usage
+<h2>Usage</h2>
 
 ``` bash
 cd Code/recommenderapp
@@ -82,10 +82,10 @@ python3 app.py
 ```
 ![Execution](https://raw.githubusercontent.com/git-ankit/MovieRecommender/master/asset/execution.gif)
 
-### Documentation 📚
+<h2>Documentation 📚</h2>
 
 Refer to the Wiki page [here](https://github.com/raghavnarula/MovieRecommender/wiki/Documentation)
 
-### Bug? 🐛
+<h2>Bug? 🐛</h2>
 
 Raise an issue on this repository, we would love to look at it ❤️
