@@ -11,6 +11,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/raghavnarula/MovieRecommender.svg)](https://github.com/raghavnarula/MovieRecommender/issues)
 [![GitHub issues-closed](https://img.shields.io/github/issues-closed/raghavnarula/MovieRecommender.svg)](https://github.com/raghavnarula/MovieRecommender/issues?q=is%3Aissue+is%3Aclosed)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+![Code Coverage](https://img.shields.io/badge/coverage-99.4%25-light_green)
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8432874.svg)](https://doi.org/10.5281/zenodo.8432874)
 [![GitHub release](https://img.shields.io/github/tag/raghavnarula/MovieRecommender.svg )](https://github.com/raghavnarula/MovieRecommender/tags)
