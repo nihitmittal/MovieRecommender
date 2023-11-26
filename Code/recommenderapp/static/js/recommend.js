@@ -24,7 +24,12 @@ $(function () {
     });
   });
   
-
+  // will be invoked when clicking on the recommended movies
+  function recommendcard(e) {
+    var my_api_key = 'c2dc5ac6d552dd25bfd3f4f156445c2e';
+    var title = e.getAttribute('title');
+    load_details(my_api_key, title);
+  }
   
   // get the basic details of the movie from the API (based on the name of the movie)
   function load_details(my_api_key, title) {
@@ -101,6 +106,14 @@ $(function () {
   
   // passing all the details to python's flask for displaying and scraping the movie reviews using imdb id
   function show_details(movie_details, arr, movie_title, my_api_key, movie_id) {
+    var imdb_id = movie_details.imdb_id;
+    var overview = movie_details.overview;
+    var genres = movie_details.genres;
+    var rating = movie_details.vote_average;
+    var vote_count = movie_details.vote_count;
+    var release_date = new Date(movie_details.release_date);
+    var runtime = parseInt(movie_details.runtime);
+    var status = movie_details.status;
     var genre_list = []
     for (var genre in genres) {
       genre_list.push(genres[genre].name);
@@ -112,7 +125,6 @@ $(function () {
     else {
       runtime = Math.floor(runtime / 60) + " hour(s) " + (runtime % 60) + " min(s)"
     }
-    arr_poster = get_movie_posters(arr, my_api_key);
   
     // Fetch trailer information using the YouTube Data API
     $.ajax({
@@ -131,6 +143,16 @@ $(function () {
         console.log(yt_link);
         // Continue with the existing code to send details to Python's Flask
         details = {
+          'title': movie_title,
+          'imdb_id': imdb_id,
+          'genres': my_genre,
+          'overview': overview,
+          'rating': rating,
+          'vote_count': vote_count.toLocaleString(),
+          'release_date': release_date.toDateString().split(' ').slice(1).join(' '),
+          'runtime': runtime,
+          'status': status,
+          'rec_movies': JSON.stringify(arr),
           'trailer': yt_link,  // Add the trailer link to the details object
         };
   
