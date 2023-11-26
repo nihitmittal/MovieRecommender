@@ -3,8 +3,6 @@
 
 <h2 style="text-align: center; color:#9EF8EE">A Collaborative Filtering-Based Recommendation System<h2>
 
-[![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/AtharvaThorve)
-
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/raghavnarula/MovieRecommender/graphs/commit-activity)
 [![Contributors Activity](https://img.shields.io/github/commit-activity/m/raghavnarula/MovieRecommender)](https://github.com/raghavnarula/MovieRecommender/pulse)
 ![Test Workflow](https://github.com/raghavnarula/MovieRecommender/actions/workflows/test.yml/badge.svg)
