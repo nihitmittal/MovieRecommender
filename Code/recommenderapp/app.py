@@ -1,99 +1,100 @@
-from flask import Flask, jsonify, render_template, request
-from flask_cors import CORS, cross_origin
-import json
-import sys
-import time
-
-import os
+import numpy as np
 import pandas as pd
+from flask import Flask, render_template, request
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import json
+import bs4 as bs
+import urllib.request
+import pickle
+import requests
+import ssl
 
+# Disable SSL certificate verification (not recommended for production)
+ssl._create_default_https_context = ssl._create_unverified_context
+# load the nlp model and tfidf vectorizer from disk
+filename = 'nlp_model.pkl'
+clf = pickle.load(open(filename, 'rb'))
+vectorizer = pickle.load(open('tranform.pkl','rb'))
 
-sys.path.append("../../")
-from Code.prediction_scripts.item_based import getSentimentScores, recommendForNewUser
-from search import Search
-from comments import Comments
+def create_similarity():
+    data = pd.read_csv('main_data.csv')
+    # creating a count matrix
+    cv = CountVectorizer()
+    count_matrix = cv.fit_transform(data['comb'])
+    # creating a similarity score matrix
+    similarity = cosine_similarity(count_matrix)
+    return data,similarity
+
+def rcmd(m):
+    m = m.lower()
+    try:
+        data.head()
+        similarity.shape
+    except:
+        data, similarity = create_similarity()
+    if m not in data['movie_title'].unique():
+        return('Sorry! The movie you requested is not in our database. Please check the spelling or try with some other movies')
+    else:
+        i = data.loc[data['movie_title']==m].index[0]
+        lst = list(enumerate(similarity[i]))
+        lst = sorted(lst, key = lambda x:x[1] ,reverse=True)
+        lst = lst[1:11] # excluding first item since it is the requested movie itself
+        l = []
+        for i in range(len(lst)):
+            a = lst[i][0]
+            l.append(data['movie_title'][a])
+        return l
+    
+# converting list of string to list (eg. "["abc","def"]" to ["abc","def"])
+def convert_to_list(my_list):
+    my_list = my_list.split('","')
+    my_list[0] = my_list[0].replace('["','')
+    my_list[-1] = my_list[-1].replace('"]','')
+    return my_list
+
+def get_suggestions():
+    data = pd.read_csv('main_data.csv')
+    return list(data['movie_title'].str.capitalize())
 
 app = Flask(__name__)
-app.secret_key = "secret key"
-
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
-
 
 @app.route("/")
-def landing_page():
-    return render_template("loading.html")
-
-
 @app.route("/home")
-def redirected():
-    return render_template("landing_page.html")
+def home():
+    suggestions = get_suggestions()
+    return render_template('home.html',suggestions=suggestions)
 
+@app.route("/similarity",methods=["POST"])
+def similarity():
+    movie = request.form['name']
+    rc = rcmd(movie)
+    if type(rc)==type('string'):
+        return rc
+    else:
+        m_str="---".join(rc)
+        return m_str
 
-@app.route("/predict", methods=["POST"])
-def predict():
-    data = json.loads(request.data)  # contains movies
-    data1 = data["movie_list"]
-    data1 = [s[:-1] for s in data1]
-    training_data = []
-    for movie in data1:
-        movie_with_rating = {"title": movie, "rating": 5.0}
-        training_data.append(movie_with_rating)
-    recommendations = recommendForNewUser(training_data)
-    recommendations = recommendations[:5]
-    resp = {"recommendations": recommendations}
-    print(recommendations)  # Add this line for debugging
-    return resp
+@app.route("/recommend",methods=["POST"])
+def recommend():
+    # getting data from AJAX request
+    title = request.form['title']
+    imdb_id = request.form['imdb_id']
+    poster = request.form['poster']
+    genres = request.form['genres']
+    overview = request.form['overview']
+    vote_average = request.form['rating']
+    vote_count = request.form['vote_count']
+    release_date = request.form['release_date']
+    runtime = request.form['runtime']
+    status = request.form['status']
 
+    # get movie suggestions for auto complete
+    suggestions = get_suggestions()
 
-@app.route("/search", methods=["POST"])
-def search():
-    term = request.form["q"]
-    print("term: ", term)
+    # passing all the data to the html file
+    return render_template('recommend.html',title=title,poster=poster,overview=overview,vote_average=vote_average,
+        vote_count=vote_count,release_date=release_date,runtime=runtime,status=status,genres=genres)
 
-    search = Search()
-    filtered_dict = search.resultsTop10(term)
-
-    resp = jsonify(filtered_dict)
-    resp.status_code = 200
-    return resp
-
-
-@app.route("/feedback", methods=["POST"])
-def feedback():
-    data = json.loads(request.data)
-
-    comments = Comments()
-    comments.setComments(data)
-
-    app_dir = os.path.dirname(os.path.abspath(__file__))
-    code_dir = os.path.dirname(app_dir)
-    project_dir = os.path.dirname(code_dir)
-    movies = pd.read_csv(project_dir + "/data/movies.csv")
-    with open(project_dir + "/data/ratings.csv", "a") as f:
-        for key, value in data.items():
-            if type(data[key]) is list:
-                # Find the movieId corresponding to the movie title
-                movieId = movies.loc[movies["title"] == key, "movieId"].values[0]
-                rating = int(data[key][0])
-                userId = ""
-                timestamp = int(time.time())
-                if rating != 0:
-                    f.write("{},{},{},{}\n".format(userId, movieId, rating, timestamp))
-
-    return data
-
-
-@app.route("/comments/<movie>")
-def comments(movie):
-    comments = Comments()
-    movie_entries = comments.getComments(movie)
-    return render_template("view_comments.html", movie_entries=movie_entries)
-
-
-@app.route("/success")
-def success():
-    return render_template("success.html")
-
-
-if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
