@@ -159,6 +159,8 @@ function show_details(movie_details, arr, movie_title, my_api_key, movie_id) {
         release_date: release_date.toDateString().split(" ").slice(1).join(" "),
         runtime: runtime,
         status: status,
+        rec_movies: JSON.stringify(arr),
+        rec_posters: JSON.stringify(arr_poster),
         trailer: yt_link, // Add the trailer link to the details object
       };
 
@@ -182,6 +184,31 @@ function show_details(movie_details, arr, movie_title, my_api_key, movie_id) {
       $("#loader").delay(500).fadeOut();
     },
   });
+}
+// getting posters for all the recommended movies
+function get_movie_posters(arr, my_api_key) {
+  var arr_poster_list = [];
+  for (var m in arr) {
+    $.ajax({
+      type: "GET",
+      url:
+        "https://api.themoviedb.org/3/search/movie?api_key=" +
+        my_api_key +
+        "&query=" +
+        arr[m],
+      async: false,
+      success: function (m_data) {
+        arr_poster_list.push(
+          "https://image.tmdb.org/t/p/original" + m_data.results[0].poster_path
+        );
+      },
+      error: function () {
+        alert("Invalid Request!");
+        $("#loader").delay(500).fadeOut();
+      },
+    });
+  }
+  return arr_poster_list;
 }
 
 function Trailercard(e) {
