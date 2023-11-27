@@ -52,27 +52,20 @@ https://github.com/raghavnarula/MovieRecommender/assets/48481966/2c0e8702-bbf7-4
 <h2>Requirements and Setup ⚙️</h2>
 
 - Python 3.9 + [Install Python On Your System](https://docs.python.org/3.9/using/index.html)
-- Setup a Virtual Environment in Python [Setup Virtualenv](https://docs.python.org/3/library/venv.html) 
-- Activate Virtualenv
-  * <strong>Linux / Unix</strong>
-
-  ``` bash
-      source env/bin/activate
-  ```
-  * <strong>Windows</strong>
-  ``` cmd
-    venv\Scripts\activate
-  ```  
 - Style check - black
   ``` bash
   pip install black
   ```
-- Install Static Code Analyser Pylance in your Favourite IDE/ Text Editor <strong>(Optional)</strong>
-
+- Clone the git repository
+  ``` bash
+  git clone https://github.com/nihitmittal/MovieRecommender.git
+  ```
 - Install all required Python packages
   ``` bash
   pip install -r requirements.txt
   ```
+**Now, You good to go and enjoy watching the recommended movies** 
+
 <h2>Usage</h2>
 
 ``` bash
@@ -81,7 +74,7 @@ python3 app.py
 ```
 ![Execution](https://raw.githubusercontent.com/git-ankit/MovieRecommender/master/asset/execution.gif)
 
-<h2>Delta 📚</h2>
+<h2>Delta </h2>
 
 Refer to the Wiki page to know about the significant changes made as a part of Project 3 [here](https://github.com/nihitmittal/MovieRecommender/wiki/The-Delta-(Project-3))
 
