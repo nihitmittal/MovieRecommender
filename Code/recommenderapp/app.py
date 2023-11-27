@@ -8,7 +8,10 @@ import bs4 as bs
 import urllib.request
 import pickle
 import requests
+import ssl
 
+# Disable SSL certificate verification (not recommended for production)
+ssl._create_default_https_context = ssl._create_unverified_context
 # load the nlp model and tfidf vectorizer from disk
 filename = 'nlp_model.pkl'
 clf = pickle.load(open(filename, 'rb'))
