@@ -2,6 +2,11 @@
 
 
 <h2 style="text-align: center; color:#9EF8EE">A Collaborative Filtering-Based Recommendation System<h2>
+  
+[![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/nihitmittal)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)]([https://forthebadge.com](https://github.com/nihitmittal/MovieRecommender))
+[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)]([https://forthebadge.com](https://github.com/nihitmittal/MovieRecommender))
+
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/nihitmittal/MovieRecommender/graphs/commit-activity)
 [![Contributors Activity](https://img.shields.io/github/commit-activity/m/nihitmittal/MovieRecommender)](https://github.com/nihitmittal/MovieRecommender/pulse)
@@ -14,6 +19,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10211139.svg)](https://doi.org/10.5281/zenodo.10211139)
 [![GitHub release](https://img.shields.io/github/tag/nihitmittal/MovieRecommender.svg )](https://github.com/nihitmittal/MovieRecommender/tags)
 [![black](https://img.shields.io/badge/StyleChecker-black-purple.svg)](https://pypi.org/project/black/)
+
 
 <h2>Project 3 Plan</h2>
 
