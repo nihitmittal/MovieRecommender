@@ -22,6 +22,7 @@
 [![black](https://img.shields.io/badge/StyleChecker-black-purple.svg)](https://pypi.org/project/black/)
 ![GitHub repo size](https://img.shields.io/github/repo-size/nihitmittal/MovieRecommender)
 ![GitHub release](https://img.shields.io/github/release/nihitmittal/MovieRecommender.svg)
+[![HitCount](https://hits.dwyl.com/nihitmittal/MovieRecommender.svg?style=flat-square)](http://hits.dwyl.com/nihitmittal/MovieRecommender)
 
 
 <h2>Project 3 Plan</h2>
