@@ -21,6 +21,7 @@
 [![GitHub release](https://img.shields.io/github/tag/nihitmittal/MovieRecommender.svg )](https://github.com/nihitmittal/MovieRecommender/tags)
 [![black](https://img.shields.io/badge/StyleChecker-black-purple.svg)](https://pypi.org/project/black/)
 ![GitHub repo size](https://img.shields.io/github/repo-size/nihitmittal/MovieRecommender)
+[![GitHub release](https://img.shields.io/github/release/nihitmittal/MovieRecommender.svg)]
 
 
 <h2>Project 3 Plan</h2>
