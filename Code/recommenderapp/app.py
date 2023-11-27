@@ -8,10 +8,7 @@ import bs4 as bs
 import urllib.request
 import pickle
 import requests
-import ssl
 
-# Disable SSL certificate verification (not recommended for production)
-ssl._create_default_https_context = ssl._create_unverified_context
 # load the nlp model and tfidf vectorizer from disk
 filename = 'nlp_model.pkl'
 clf = pickle.load(open(filename, 'rb'))
@@ -88,9 +85,19 @@ def recommend():
     release_date = request.form['release_date']
     runtime = request.form['runtime']
     status = request.form['status']
-
+    trailer = request.form['trailer']
+    rec_movies = request.form['rec_movies']
+    rec_posters = request.form['rec_posters']
+    print(trailer)
     # get movie suggestions for auto complete
     suggestions = get_suggestions()
+
+    # call the convert_to_list function for every string that needs to be converted to list
+    rec_movies = convert_to_list(rec_movies)
+    rec_posters = convert_to_list(rec_posters)
+    
+    # combining multiple lists as a dictionary which can be passed to the html file so that it can be processed easily and the order of information will be preserved
+    movie_cards = {rec_posters[i]: rec_movies[i] for i in range(len(rec_posters))}
     
     # web scraping to get user reviews from IMDB site
     sauce = urllib.request.urlopen('https://www.imdb.com/title/{}/reviews?ref_=tt_ov_rt'.format(imdb_id)).read()
@@ -109,11 +116,12 @@ def recommend():
             reviews_status.append('Good' if pred else 'Bad')
 
     # combining reviews and comments into a dictionary
-    movie_reviews = {reviews_list[i]: reviews_status[i] for i in range(len(reviews_list))} 
+    movie_reviews = {reviews_list[i]: reviews_status[i] for i in range(len(reviews_list))}     
 
     # passing all the data to the html file
     return render_template('recommend.html',title=title,poster=poster,overview=overview,vote_average=vote_average,
-        vote_count=vote_count,release_date=release_date,runtime=runtime,status=status,genres=genres,reviews=movie_reviews)
+        vote_count=vote_count,release_date=release_date,runtime=runtime,status=status,genres=genres,
+        movie_cards=movie_cards,reviews=movie_reviews,trailer = trailer)
 
 if __name__ == '__main__':
     app.run(debug=True)
