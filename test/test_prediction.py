@@ -3,117 +3,191 @@ import warnings
 import sys
 
 sys.path.append("../")
-from Code.prediction_scripts.item_based import recommendForNewUser
+from Code.recommenderapp.app import rcmd
 
 warnings.filterwarnings("ignore")
 
 
 class Tests(unittest.TestCase):
     def testToyStory(self):
-        ts = [
-            {"title": "Toy Story (1995)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
+        ts = "Toy story"
+        recommendations = rcmd(ts)
         self.assertTrue(
             any(
-                movie["title"] == "Adventures of Rocky and Bullwinkle, The (2000)"
+                movie == "cars"
+                for movie in recommendations
+            )
+        )
+
+    def testCamelCase(self):
+        ts = "Toy Story"
+        recommendations = rcmd(ts)
+        self.assertTrue(
+            any(
+                movie == "cars"
+                for movie in recommendations
+            )
+        )
+
+    def testLoweCase(self):
+        ts = "toy story"
+        recommendations = rcmd(ts)
+        self.assertTrue(
+            any(
+                movie == "cars"
+                for movie in recommendations
+            )
+        )
+
+    def testUpperCase(self):
+        ts = "TOY STORY"
+        recommendations = rcmd(ts)
+        self.assertTrue(
+            any(
+                movie == "cars"
                 for movie in recommendations
             )
         )
 
     def testRoboCop(self):
-        ts = [
-            {"title": "RoboCop (1987)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
+        ts = "RoboCop"
+        recommendations = rcmd(ts)
         self.assertTrue(
             any(
-                movie["title"] == "Boondock Saints II: All Saints Day, The (2009)"
+                movie == "elite squad"
+                for movie in recommendations
+            )
+        )
+
+    def testBatmanPos(self):
+        ts = "Batman"
+        recommendations = rcmd(ts)
+        self.assertTrue(
+            any(
+                movie == "batman returns"
+                for movie in recommendations
+            )
+        )   
+
+    def testBatmanNeg(self):
+        ts = "Batman"
+        recommendations = rcmd(ts)
+        self.assertFalse(
+            any(
+                movie == "avengers"
+                for movie in recommendations
+            )
+        )  
+    
+    def testPrisonersPos(self):
+        ts = "Prisoners"
+        recommendations = rcmd(ts)
+        self.assertTrue(
+            any(
+                movie == "zodiac"
+                for movie in recommendations
+            )
+        )
+
+    def testPrisonersNeg(self):
+        ts = "Prisoners"
+        recommendations = rcmd(ts)
+        self.assertFalse(
+            any(
+                movie == "barbie"
                 for movie in recommendations
             )
         )
 
     def testNolan(self):
-        ts = [
-            {"title": "Inception (2010)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
+        ts = "Inception"
+        recommendations = rcmd(ts)
         self.assertTrue(
-            any(movie["title"] == "Watchmen (2009)" for movie in recommendations)
+            any(movie == "the revenant" for movie in recommendations)
         )
 
     def testDC(self):
-        ts = [
-            {"title": "Man of Steel (2013)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
+        ts = "Man of Steel"
+        recommendations = rcmd(ts)
         self.assertTrue(
-            any(movie["title"] == "Man of Steel (2013)" for movie in recommendations)
+            any(movie == "justice league" for movie in recommendations)
         )
 
     def testArmageddon(self):
-        ts = [
-            {"title": "Armageddon (1998)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
+        ts = "Armageddon"
+        recommendations = rcmd(ts)
         self.assertTrue(
-            any(movie["title"] == "Saint, The (1997)" for movie in recommendations)
+            any(movie == "transformers" for movie in recommendations)
         )
 
-    def testLethalWeapon(self):
-        ts = [
-            {"title": "Lethal Weapon (1987)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
+    def testHorror(self):
+        ts = "The nun"
+        recommendations = rcmd(ts)
         self.assertTrue(
-            any(movie["title"] == "Lethal Weapon 2 (1989)" for movie in recommendations)
+            any(movie == "the conjuring" for movie in recommendations)
         )
 
-    def testDarkAction(self):
-        ts = [
-            {"title": "Batman: The Killing Joke (2016)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
+    def testAnime(self):
+        ts = "Finding Nemo"
+        recommendations = rcmd(ts)
         self.assertTrue(
-            any(
-                movie["title"] == "Branded to Kill (Koroshi no rakuin) (1967)"
-                for movie in recommendations
-            )
+            any(movie == "ice age" for movie in recommendations)
         )
 
-    def testHorrorComedy(self):
-        ts = [
-            {"title": "Scary Movie (2000)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
-        self.assertTrue(
-            any(
-                movie["title"] == "Attack of the Killer Tomatoes! (1978)"
-                for movie in recommendations
-            )
-        )
+    #Testing if the input string is empty, the code should handle this scenario as well
+    def testEmptyInput(self):
+        ts = ""
+        recommendations = rcmd(ts)
+        self.assertEqual(recommendations, "Sorry! The movie you requested is not in our database. Please check the spelling or try with some other movies")
 
-    def testSuperHeroes(self):
-        ts = [
-            {"title": "Spider-Man (2002)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
-        self.assertTrue(
-            any(
-                movie["title"] == "Terminator Genisys (2015)"
-                for movie in recommendations
-            )
-        )
+    def testInvalidMovie(self):
+        ts = "Invalid Movie"
+        recommendations = rcmd(ts)
+        self.assertEqual(recommendations, "Sorry! The movie you requested is not in our database. Please check the spelling or try with some other movies")
 
-    def testCartoon(self):
-        ts = [
-            {"title": "Moana (2016)", "rating": 5.0},
-        ]
-        recommendations = recommendForNewUser(ts)
-        self.assertTrue(
-            any(movie["title"] == "Monsters, Inc. (2001)" for movie in recommendations)
-        )
+    def testNoRecommendationsForGenre(self):
+        ts = "Romantic movie"
+        recommendations = rcmd(ts)
+        self.assertEqual(recommendations, "Sorry! The movie you requested is not in our database. Please check the spelling or try with some other movies")
 
+    def testCaseSensitivity(self):
+        ts_upper = "TOY STORY"
+        ts_lower = "toy story"
+    
+        recommendations_upper = rcmd(ts_upper)
+        recommendations_lower = rcmd(ts_lower)
+    
+        self.assertEqual(recommendations_upper, recommendations_lower)
+
+    def testNonExistentMovie(self):
+        ts = "Nonexistent Movie"
+        recommendations = rcmd(ts)
+        self.assertEqual(recommendations, "Sorry! The movie you requested is not in our database. Please check the spelling or try with some other movies")
+
+    def testMultipleRecommendations(self):
+        ts = "Inception"
+        recommendations = rcmd(ts)
+        self.assertTrue(len(recommendations) > 1)
+
+    def testLongMovieTitles(self):
+        ts = "A Movie with a Very Long and Descriptive Title"
+        recommendations = rcmd(ts)
+        self.assertTrue(len(recommendations) > 0)
+
+    def testUnicodeCharacters(self):
+        ts = "Coco (2017) :) – Remember Me (Lullaby)"
+        recommendations = rcmd(ts)
+        self.assertTrue(len(recommendations) > 0)
+
+    def testUnexpectedInput(self):
+        ts = "12345"
+        recommendations = rcmd(ts)
+        self.assertEqual(recommendations, "Sorry! The movie you requested is not in our database. Please check the spelling or try with some other movies")
+
+    def testGibberishInput(self):
+        ts = "alkfjasdlfjasldf"
+        recommendations = rcmd(ts)
+        self.assertEqual(recommendations, "Sorry! The movie you requested is not in our database. Please check the spelling or try with some other movies")
 
 if __name__ == "__main__":
     unittest.main()
