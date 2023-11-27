@@ -23,6 +23,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/nihitmittal/MovieRecommender)
 ![GitHub release](https://img.shields.io/github/release/nihitmittal/MovieRecommender.svg)
 [![HitCount](https://hits.dwyl.com/nihitmittal/MovieRecommender.svg?style=flat-square)](http://hits.dwyl.com/nihitmittal/MovieRecommender)
+![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/nihitmittal/MovieRecommender)
 
 
 <h2>Project 3 Plan</h2>
