@@ -81,10 +81,14 @@ python3 app.py
 ```
 ![Execution](https://raw.githubusercontent.com/git-ankit/MovieRecommender/master/asset/execution.gif)
 
-<h2>Documentation 📚</h2>
+<h2>Delta 📚</h2>
 
-Refer to the Wiki page [here](https://github.com/raghavnarula/MovieRecommender/wiki/Documentation)
+Refer to the Wiki page to know about the significant changes made as a part of Project 3 [here](https://github.com/nihitmittal/MovieRecommender/wiki/The-Delta-(Project-3))
 
+<h2>Contributors </h2>
+[Nihit Mittal](https://www.linkedin.com/in/nihitmittal/)
+[Aryaman Jain](https://www.linkedin.com/in/aryaman-jain03/)
+[Ankit Garg](https://www.linkedin.com/in/ankitgarg5/)
 <h2>Bug? 🐛</h2>
 Raise a issue on this repository, we would love to look at it ❤️
   
