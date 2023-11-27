@@ -13,12 +13,12 @@ import ssl
 # Disable SSL certificate verification (not recommended for production)
 ssl._create_default_https_context = ssl._create_unverified_context
 # load the nlp model and tfidf vectorizer from disk
-filename = 'nlp_model.pkl'
+filename = 'C:\\Users\\ankit\\OneDrive\\Desktop\\moviereco\\MovieRecommender\\Code\\recommenderapp\\nlp_model.pkl'
 clf = pickle.load(open(filename, 'rb'))
-vectorizer = pickle.load(open('tranform.pkl','rb'))
+vectorizer = pickle.load(open('C:\\Users\\ankit\\OneDrive\\Desktop\\moviereco\\MovieRecommender\\Code\\recommenderapp\\tranform.pkl','rb'))
 
 def create_similarity():
-    data = pd.read_csv('main_data.csv')
+    data = pd.read_csv('C:\\Users\\ankit\\OneDrive\\Desktop\\moviereco\\MovieRecommender\\Code\\recommenderapp\\main_data.csv')
     # creating a count matrix
     cv = CountVectorizer()
     count_matrix = cv.fit_transform(data['comb'])
