@@ -10,6 +10,7 @@
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/nihitmittal/MovieRecommender/graphs/commit-activity)
 [![Contributors Activity](https://img.shields.io/github/commit-activity/m/nihitmittal/MovieRecommender)](https://github.com/nihitmittal/MovieRecommender/pulse)
+[![Contributors](https://img.shields.io/github/all-contributors/nihitmittal/MovieRecommender)
 ![Test Workflow](https://github.com/raghavnarula/MovieRecommender/actions/workflows/test.yml/badge.svg)
 [![GitHub issues](https://img.shields.io/github/issues/nihitmittal/MovieRecommender.svg)](https://github.com/nihitmittal/MovieRecommender/issues)
 [![GitHub issues-closed](https://img.shields.io/github/issues-closed/nihitmittal/MovieRecommender.svg)](https://github.com/nihitmittal/MovieRecommender/issues?q=is%3Aissue+is%3Aclosed)
