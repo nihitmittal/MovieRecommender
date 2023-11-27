@@ -20,6 +20,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10211139.svg)](https://doi.org/10.5281/zenodo.10211139)
 [![GitHub release](https://img.shields.io/github/tag/nihitmittal/MovieRecommender.svg )](https://github.com/nihitmittal/MovieRecommender/tags)
 [![black](https://img.shields.io/badge/StyleChecker-black-purple.svg)](https://pypi.org/project/black/)
+![GitHub repo size](https://img.shields.io/github/repo-size/nihitmittal/MovieRecommender)
 
 
 <h2>Project 3 Plan</h2>
