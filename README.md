@@ -26,33 +26,20 @@
 ![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/nihitmittal/MovieRecommender)
 
 
-<h2>Project 3 Plan</h2>
+<h2>Brief Introduction Plan</h2>
 
-(Please see [wiki](https://github.com/raghavnarula/MovieRecommender/wiki/Project-3-Plan) for detailed information.)
+Content Based Recommender System recommends movies similar to the movie user likes and analyses the sentiments on the reviews given by the user for that movie.
 
-Testing how good the Movie Recommender is :
+The details of the movies(title, genre, runtime, rating, poster, etc) are fetched using an API by TMDB, https://www.themoviedb.org/documentation/api, and using the IMDB id of the movie in the API, I did web scraping to get the reviews given by the user in the IMDB site using beautifulsoup4 and performed sentiment analysis on those reviews.
 
-1. Pick 10-15 very famous movies.
-2. Make sure the movies have diversity based on genre, cast, and production style.
-3. Show users a set of the top 5 movies recommended by the Movie Recommender.
-4. Let the user give a rating out of 5 and write comments about the movie.
-5. Collect the ratings and improve the collaborative filtering model to give better predictions to other users.
-6. Perform Sentiment analysis on the comments written by the user and determine whether the comment is positive, critical, or neutral.
+<h2>Documentation</h2>
 
-Note: Our system can be virtually uploaded to sites like [Code SandBox](https://codesandbox.io/), for easier testing.
-
+The detailed documentation of our project can be found on the [Wiki Page](https://github.com/nihitmittal/MovieRecommender/wiki)
 <h2>Tech stack 👨‍💻</h2>
 
 |<img src="images/python.svg">     | <img src="images/flask.svg">      | <img src="images/html5.svg">         |<img src="images/css3.svg">       | <img src="images/javascript.svg">        | 
 | -------- | ------- | -------- | ------- | -------|
 | Python | Flask     | HTML | CSS     | Javascript |
-
-
-<h2>Video ▶️</h2>
-
-https://github.com/raghavnarula/MovieRecommender/assets/48481966/7e36e523-a48d-4342-869a-c676c329ab23
-
-
 
 
 <h2>Working 📱</h2>
@@ -83,7 +70,29 @@ https://github.com/raghavnarula/MovieRecommender/assets/48481966/2c0e8702-bbf7-4
 cd Code/recommenderapp
 python3 app.py
 ```
-![Execution](https://raw.githubusercontent.com/git-ankit/MovieRecommender/master/asset/execution.gif)
+![Intial](https://github.com/nihitmittal/MovieRecommender/assets/52000096/79b54bfc-4ff1-478e-838a-6f36a8205d01)
+
+<h2>Major Parts of the Project  </h2>
+<h3>Recommendation Mechanism</h3>
+
+How does it decide which item is most similar to the item user likes? Here come the similarity scores.
+
+It is a numerical value ranges between zero to one which helps to determine how much two items are similar to each other on a scale of zero to one. This similarity score is obtained measuring the similarity between the text details of both of the items. So, similarity score is the measure of similarity between given text details of two items. This can be done by cosine-similarity.
+
+![mechanism](https://github.com/nihitmittal/MovieRecommender/assets/52000096/25434790-4c08-4563-b7d0-0d2470dfa5b7)
+
+<h3>Integrated Links to their Trailers </h3>
+
+With thw recommended movie list you also get the link of their respective official trailers on the poster itself 
+
+<img width="1728" alt="image" src="https://github.com/nihitmittal/MovieRecommender/assets/52000096/373c6c51-56f4-4e0d-97f6-1876fe9c83fa">
+
+
+<h2>Sources of the Datasets </h2>
+
+[IMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/carolzhangdc/imdb-5000-movie-dataset)
+
+[The Movies Dataset](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset)
 
 <h2>Delta </h2>
 
