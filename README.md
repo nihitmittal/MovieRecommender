@@ -3,16 +3,16 @@
 
 <h2 style="text-align: center; color:#9EF8EE">A Collaborative Filtering-Based Recommendation System<h2>
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/raghavnarula/MovieRecommender/graphs/commit-activity)
-[![Contributors Activity](https://img.shields.io/github/commit-activity/m/raghavnarula/MovieRecommender)](https://github.com/raghavnarula/MovieRecommender/pulse)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/nihitmittal/MovieRecommender/graphs/commit-activity)
+[![Contributors Activity](https://img.shields.io/github/commit-activity/m/nihitmittal/MovieRecommender)](https://github.com/nihitmittal/MovieRecommender/pulse)
 ![Test Workflow](https://github.com/raghavnarula/MovieRecommender/actions/workflows/test.yml/badge.svg)
-[![GitHub issues](https://img.shields.io/github/issues/raghavnarula/MovieRecommender.svg)](https://github.com/raghavnarula/MovieRecommender/issues)
-[![GitHub issues-closed](https://img.shields.io/github/issues-closed/raghavnarula/MovieRecommender.svg)](https://github.com/raghavnarula/MovieRecommender/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub issues](https://img.shields.io/github/issues/nihitmittal/MovieRecommender.svg)](https://github.com/nihitmittal/MovieRecommender/issues)
+[![GitHub issues-closed](https://img.shields.io/github/issues-closed/nihitmittal/MovieRecommender.svg)](https://github.com/nihitmittal/MovieRecommender/issues?q=is%3Aissue+is%3Aclosed)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![Code Coverage](https://img.shields.io/badge/coverage-99.4%25-light_green)
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8432874.svg)](https://doi.org/10.5281/zenodo.8432874)
-[![GitHub release](https://img.shields.io/github/tag/raghavnarula/MovieRecommender.svg )](https://github.com/raghavnarula/MovieRecommender/tags)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10211139.svg)](https://doi.org/10.5281/zenodo.10211139)
+[![GitHub release](https://img.shields.io/github/tag/nihitmittal/MovieRecommender.svg )](https://github.com/nihitmittal/MovieRecommender/tags)
 [![black](https://img.shields.io/badge/StyleChecker-black-purple.svg)](https://pypi.org/project/black/)
 
 <h2>Project 3 Plan</h2>
