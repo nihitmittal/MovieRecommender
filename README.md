@@ -85,6 +85,9 @@ Refer to the Wiki page to know about the significant changes made as a part of P
 [Aryaman Jain](https://www.linkedin.com/in/aryaman-jain03/)
 
 [Ankit Garg](https://www.linkedin.com/in/ankitgarg5/)
+<h2>Contact Us </h2>
+
+In case of any queries or issues please feel free to reach to us nmittal2@ncsu.edu 
 
 <h2>Bug? 🐛</h2>
 Raise a issue on this repository, we would love to look at it ❤️
