@@ -43,9 +43,9 @@ The detailed documentation of our project can be found on the [Wiki Page](https:
 
 
 <h2>Working 📱</h2>
+Click on the picture to watch the movie
 
-
-https://github.com/raghavnarula/MovieRecommender/assets/48481966/2c0e8702-bbf7-43c4-b703-1b3681b58925
+[![Alt text](https://github.com/nihitmittal/MovieRecommender/blob/master/asset/Movie-Recommendation.jpeg)](https://youtu.be/IsLc_Nr0rak)
 
 <h2>Requirements and Setup ⚙️</h2>
 
