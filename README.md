@@ -117,3 +117,7 @@ Please refer to the [Contributing.md](https://github.com/raghavnarula/MovieRecom
 
 
 Raise an issue on this repository, we would love to look at it ❤️
+
+## License
+
+This project is under the MIT License.
